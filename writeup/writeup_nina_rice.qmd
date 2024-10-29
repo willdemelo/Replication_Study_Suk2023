@@ -1,0 +1,100 @@
+---
+title: "Replication of Study 'Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead' (2022, Psychology and Marketing)"
+author: "Nina Rice nmrice@ucsd.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format: pdf
+---
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+## Introduction
+
+In the replication of Study 2 from the paper *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead*, the aim is to test the study’s findings on how donation collection methods impact donation behaviors, specifically targeting overhead aversion. Overhead aversion is the tendency for donors to resist contributing to operational expenses, preferring instead that their contributions go directly toward the cause. This aversion can hinder charities’ abilities to cover essential costs, potentially compromising their long-term goals. The original study investigates whether presenting the cause and overhead components of donations in different sequences can alleviate overhead aversion, increase overall donations, and maintain donor satisfaction.
+
+To replicate this experiment, participants will engage in a charitable donation scenario, deciding how to allocate a specified amount across cause and overhead expenses. The key manipulation is the sequence of allocation decisions: participants either allocate to the cause first, followed by overhead, or to overhead first followed by cause. A critical aspect will be designing donation collection screens that reflect realistic charity websites, helping participants understand and engage with the scenario authentically. Other challenges include ensuring participant engagement in an online setting and recruiting a sample that represents a range of donation experiences, as prior experience may affect donation behavior.
+
+
+## Methods
+
+### Power Analysis
+
+Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+
+### Planned Sample
+
+We are aiming to recruit about 140 participants, allowing us to test 70 participants per each of our two experimental conditions. Ideally, we can use participants in the UK to mimic the geographic area of interest in the original study. We will not be controlling for demographic characteristics such as age, gender, and so on. Once target participation is met, data collection will be terminated.
+
+### Materials
+
+A donation amount input form will be used to gauge participants' desired contributions. It will include two input boxes, one for overhead and one for cause, as well as a total sum at the bottom. One version of this (for Condition 1) will ask for the cause first, then overhead, and the second version (for Condition 2) will request the amounts in the reverse order. 
+
+Once completed, the participant will complete a single question Likert scale rating between 1-7 (low-high) on the satisfaction they feel towards their donation.
+
+### Procedure	
+
+At the start of the survey, participants will be notified that they have a 20% chance to win additional compensation once complete. They will be informed that they may choose to donate none, part, or all of this additional compensation to a charitable organization. If the participant indicates "0", they would keep the additional compensation for their self, and none would be donated. 
+
+We will then present our participants with information on how charitable organizations collect and spend donation money. They will be notified that donated money goes to (1) helping the cause, and (2) covering the operational costs of the charity, and that some organizations receive donations separately for the two categories. Then, a comprehension check will ensure that participants are following along with the procedural setup.
+
+Donation campaign information will be provided in order to give participants a general understanding of the charity that we select, however, the specific organization will not be revealed. 
+
+Participants will then be randomly assigned into one of the two experimental conditions. In Condition 1, they will indicate how much money to donate to the cause first, and then, on the next page, they will indicate how much money to donate to the overhead expenses. In Condition 2, they will do this in reverse, first indicating how much should go towards overhead, followed by cause. In either condition, the total amount will be summed and displayed on the screen. Participants will be reminded that they can donate as much or little as they want, not exceeding the allowed amount, and they will receive whatever amount they do not donate. Finally, we will measure their self-reported satisfaction with their donation.
+
+### Analysis Plan
+
+We will undergo regression analysis to determine difference in donation amounts between conditions. A series of regression analyses will help to examine differences within conditions of money donated to cause versus overhead. A t-test can also compare mean amounts of donations within each category.
+
+### Differences from Original Study
+
+In the original paper, the study we are replicating was added on to the end of an unrelated survey, however, we will not be doing so in this case. Rather, participants will go directly into our study of interest. Our instructions will vary slightly from those in the original experiment. We are hoping for a response from the original authors to provide greater insight into formatting and instructions.
+
+### Methods Addendum (Post Data Collection)
+
+You can comment this section out prior to final report with data collection.
+
+#### Actual Sample
+  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+#### Differences from pre-data collection methods plan
+  Any differences from what was described as the original plan, or “none”.
+
+
+## Results
+
+
+### Data preparation
+
+We will collect data either via qualtrics, or using a custom website derived from Js-Psych packages in our HTML code. Packages will be required in order to read and analyze .csv data, and to perform regression analyses and t-tests. Using the comprehension check responses, we will be able to filter our results based on whether they passed or not. The columns we will be creating are: Participant ID, Condition, Demographics (Age, Gender, Nationality), Amount donated to overhead, Amount donated to cause, Total amount, Donation satisfaction, and Donation status (whether or not they were in the 20% selected to win/donate the additional compensation).
+
+	
+```{r include=F}
+### Data Preparation
+
+#### Load Relevant Libraries and Functions
+
+#### Import data
+
+#### Data exclusion / filtering
+
+#### Prepare data for analysis - create columns etc.
+```
+
+### Confirmatory analysis
+
+The analyses as specified in the analysis plan.  
+
+*Side-by-side graph with original graph is ideal here*
+
+### Exploratory analyses
+
+Any follow-up analyses desired (not required).  
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
