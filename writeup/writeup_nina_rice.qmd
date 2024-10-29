@@ -34,15 +34,13 @@ Once completed, the participant will complete a single question Likert scale rat
 
 At the start of the survey, participants will be notified that they have a 20% chance to win additional compensation once complete. They will be informed that they may choose to donate none, part, or all of this additional compensation to a charitable organization. If the participant indicates "0", they would keep the additional compensation for their self, and none would be donated. 
 
-We will then present our participants with information on how charitable organizations collect and spend donation money. They will be notified that donated money goes to (1) helping the cause, and (2) covering the operational costs of the charity, and that some organizations receive donations separately for the two categories. Then, a comprehension check will ensure that participants are following along with the procedural setup.
-
-Donation campaign information will be provided in order to give participants a general understanding of the charity that we select, however, the specific organization will not be revealed. 
+We will then present our participants with information on how charitable organizations collect and spend donation money. They will be notified that donated money goes to (1) helping the cause, and (2) covering the operational costs of the charity, and that some organizations receive donations separately for the two categories. Donation campaign information will be provided in order to give participants a general understanding of the charity that we select, however, the specific organization will not be revealed. Then, a comprehension check will ensure that participants are following along with the procedural setup.
 
 Participants will then be randomly assigned into one of the two experimental conditions. In Condition 1, they will indicate how much money to donate to the cause first, and then, on the next page, they will indicate how much money to donate to the overhead expenses. In Condition 2, they will do this in reverse, first indicating how much should go towards overhead, followed by cause. In either condition, the total amount will be summed and displayed on the screen. Participants will be reminded that they can donate as much or little as they want, not exceeding the allowed amount, and they will receive whatever amount they do not donate. Finally, we will measure their self-reported satisfaction with their donation.
 
 ### Analysis Plan
 
-We will undergo regression analysis to determine difference in donation amounts between conditions. A series of regression analyses will help to examine differences within conditions of money donated to cause versus overhead. A t-test can also compare mean amounts of donations within each category.
+We will undergo regression analysis to determine difference in donation amounts between conditions. A series of regression analyses will help to examine differences within conditions of money donated to cause versus overhead, as well as regarding donation satisfaction level. Multiple linear regressions can be conducted using condition as the independent variable and demographics as the dependent variables. This can also be done with other variables as the independent variables, such as donation amounts. A t-test can also compare mean amounts of donations within each category.
 
 ### Differences from Original Study
 
