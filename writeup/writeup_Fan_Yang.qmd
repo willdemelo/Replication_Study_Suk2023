@@ -1,0 +1,145 @@
+---
+title: "Replication of Study 'Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead' Suk & Mudita (2022, Psychology & Marketing)"
+author: "Fan Yang (fay006@ucsd.edu)"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    toc: true
+    toc_depth: 3
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+## Introduction
+
+The study *“Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead”* explores how different donation collection methods can nudge individuals to contribute varying amounts to charitable causes and operational overhead.
+Using a choice architecture approach, the study examines whether presenting overhead expenses first or last can mitigate “overhead aversion”, a common reluctance among donors to fund operational costs, as opposed to direct causes.
+The authors test three methods across several studies: an allocation method, where donors allocate a set amount between cause and overhead; a cause-first addition, where donors contribute to the cause first; and an overhead-first addition, where donors specify overhead contributions before deciding on cause donations.
+
+In Study 2 of the original paper, Suk and Mudita found that presenting the overhead request before the cause request (overhead-first condition) led to higher total donations compared to the cause-first condition.
+The goal of this replication project is to test the reliability of this key finding by replicating the original experiment.
+In this setup, participants will engage in a charitable donation scenario where they allocate a fixed amount of money between a cause and overhead, depending on whether they encounter the cause-first or overhead-first sequence.
+A key challenge in this study is ensuring that the presentation order truly influences donation behavior across various settings and donor profiles.
+If confirmed, these findings could help nonprofits design donation requests that encourage higher overall contributions.
+
+Link to the repository: <https://github.com/ucsd-psych201a/suk2023>
+
+## Methods
+
+### Power Analysis
+
+Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.
+Considerations of feasibility for selecting planned sample size.
+
+### Planned Sample
+
+-   **Sample Size**: The study aims to recruit approximately 140 participants, with about 70 participants per condition (cause-first vs. overhead-first).
+-   **Sampling Frame**: Participants will be recruited from an online platform like Prolific, with eligibility limited to adults aged 18 years and older. There will be no other specific controls for demographics like gender and geographic location.
+-   **Termination Rule**: Data collection will end once the target of 140 participants is reached.
+
+### Materials
+
+-   **Donation Input Form**: Participants will be presented with a donation form where they could enter amounts to allocate between two categories: (1) "For the cause" (the direct support for the charitable mission) and (2) "For covering charitable organization's operating expenses" (overhead). The order of these categories will depend on the condition to which participants are assigned (cause-first or overhead-first). The total donation amount was automatically computed based on the amounts inputted for each category, ensuring participants did not exceed the allowed limit.
+-   **Satisfaction Scale**: After completing the donation decisions, participants will rate their satisfaction with their donation using a 7-point Likert scale (1 = not satisfied at all, 7 = very satisfied).
+
+### Procedure
+
+**1. Consent and Demographic Information**: Participants will be asked for their consent to participate in the study and will then provide basic demographic information (e.g., age, gender, and nationality).
+All participants will receive a baseline payment for completing the study.
+They will be also informed that they have a 20% chance to win an extra amount (around \$6), which they can choose to donate or keep.
+
+**2. Information on Charitable Donations**: Participants will receive information on how charitable organizations collect and allocate donations, explaining that donations often go toward both (1) supporting the cause and (2) covering operational costs.
+They will also be informed that "some organizations receive donations separately for cause and overhead," to clarify the purpose of each type of donation.
+At last, participants will be presented with general information of a donation campaign.
+
+**3. Comprehension Checks**: Two comprehension check questions will ensure participants understand the setup, including how charities use donations (supporting both causes and operational expenses) and the nature of their compensation (a guaranteed amount with a 20% chance to earn an additional amount to keep or donate).
+
+**4.Experimental Conditions**:
+
+-   Condition 1 (Cause-First): Participants will first specify how much they wish to donate to the cause, followed by how much to the overhead.
+
+-   Condition 2 (Overhead-First): Participants will first specify how much they wish to donate to the overhead, followed by how much to the cause.
+
+**5.Donation Allocation and Total Calculation**: The donation form will automatically calculate and display the total donation amount based on participants’ allocations to the cause and overhead, ensuring they stay within the allowed limit.
+Participants will be reminded that they may donate any portion of the allowed amount and will keep whatever they choose not to donate.
+
+**6. Donation Satisfaction**: After completing the allocation, participants will rate their satisfaction with their donation decision on a 7-point Likert scale ranging from 1 (not satisfied at all) to 7 (very satisfied).
+
+**7. Closing and Compensation**: At the end, participants will be thanked for their participation.
+For those selected in the “20% winners” category, additional compensation will be sent, or remaining funds will be donated according to their indicated choices.
+
+### Analysis Plan
+
+**1. Donation Amount Analysis**: To assess the impact of donation collection method (cause-first vs. overhead-first) on donation behavior, we will conduct regression analyses with total donation amount as the dependent variable, and donation method along with demographic variables (e.g., age and gender) as independent variables.
+Separate regressions for cause and overhead donations will further analyze how the collection method influences each allocation independently.
+Additionally, an independent samples t-test will compare the donation amounts between the two conditions.
+
+**2. Satisfaction Analysis**: To analyze satisfaction, we will start with a simple regression using satisfaction as the dependent variable and condition (cause-first vs. overhead-first) as the independent variable.
+We will then expand to a multiple regression model that includes demographic variables (e.g., age, gender) alongside condition to assess if demographics influence satisfaction.
+Finally, a comprehensive model will include amounts donated to cause and overhead as additional predictors.
+
+### Differences from Original Study
+
+In the original study, the experiment was conducted as an optional follow-up to an unrelated survey, where participants could choose to participate in the donation task with a 20% chance of earning six pounds.
+In our replication, we have chosen to skip the unrelated survey, starting directly with the donation experiment.
+All participants will still have the same 20% chance to earn the bonus.
+We are also providing participants with slightly modified instructions for clarity.
+These revised instructions closely follow the original study’s procedures and maintain the essential information and steps required for the task.
+
+### Methods Addendum (Post Data Collection)
+
+You can comment this section out prior to final report with data collection.
+
+#### Actual Sample
+
+Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+#### Differences from pre-data collection methods plan
+
+Any differences from what was described as the original plan, or “none”.
+
+## Results
+
+### Data Preparation
+
+Data will be collected through a custom website, using JsPsych packages integrated into our HTML code to guide participants through the experiment.
+
+#### Load Relevant Libraries and Functions
+
+Necessary packages (e.g., tidyverse) will be loaded to handle data import, analysis, and visualization.
+Key packages include those for reading and analyzing .csv data, conducting regression analyses, and performing t-tests.
+
+#### Import data
+
+The collected data will be imported as a .csv file for analysis.
+
+#### Data exclusion / filtering
+
+Participants who fail both comprehension checks will be excluded from the analysis to ensure data quality and participant understanding.
+
+#### Prepare data for analysis - create columns etc.
+
+We will create specific columns for the following variables: - Participant ID - Condition (cause-first or overhead-first) - Demographic Variables: age, gender, nationality - Satisfaction: recorded on a Likert scale - Amount Donated: split into overhead and cause categories - Total Amount Donated: sum of donations to cause and overhead - Bonus Selection: whether participants were selected to receive the X-dollar bonus
+
+### Confirmatory analysis
+
+The confirmatory analysis will focus on testing whether the order of donation requests significantly affects the total amount donated.
+We will conduct an independent samples t-test comparing the mean total donation amounts between the two conditions: cause-first and overhead-first.
+Additionally, a series of regression analyses will be conducted to further investigate the effect of donation order while controlling for demographic covariates, such as age and gender.
+Together, these analyses address the hypothesis that the overhead-first condition will lead to higher total donations.
+
+### Exploratory analyses
+
+Any follow-up analyses desired (not required).
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.
+None of these need to be long.
