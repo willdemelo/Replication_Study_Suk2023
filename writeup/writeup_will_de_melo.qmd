@@ -3,16 +3,16 @@ title: "Replication of Study 2 from Effects of donation collection methods on do
 author: "William de Melo (wdemelo@ucsd.edu)"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
-  pdf:
+  html:
     toc: true
     toc_depth: 3
 ---
 
 ## Introduction
 
-Charity organizations rely on donations to both support their advertised cause and maintain their overhead expenses. However, donors support charities less if they deem they use their donations more for overheads than for their cause, a heuristic known as "overhead aversion." In their paper, *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead*, Drs. Kwanho Suk and Triza Mudita contribute to research on reducing/adapting to overhead aversion. They do this by administering surveys through crowdsourcing websites, wherein they assess the affects of choice architecture on participants' willingness to donate money to charity.
+Charity organizations rely on donations to both support their advertised cause and maintain their overhead expenses. However, donors support charities less when they think their donations are used more for overheads than for a cause, a heuristic known as *overhead aversion.* In their paper, *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead*, Drs. Kwanho Suk and Triza Mudita contribute to research on reducing/adapting to overhead aversion. They do this by administering surveys through crowdsourcing websites, with which they assess the affects of choice architecture on participants' willingness to donate to charity.
 
-In Study 2 of their three documented experiments, Suk and Mudita found that participants donate more money when asked to donate to a charity's cause first, and their overhead expenses second, as opposed to overheads first, cause second. Based on this finding, charity organizations could get more money to achieve their goals simply by changing the order in which donations are asked for. We therefore replicate Suk and Mudita's experiment in this study to assess support for their data.
+In the second of their three documented experiments, Suk and Mudita found that participants give more money when asked to donate to a charity's cause first, before being asked to donate to its overhead expenses, as opposed to overheads first, cause second. Based on this finding, charity organizations could get more money to achieve their goals simply by changing the order in which donations are asked for. We therefore replicate Suk and Mudita's experiment in this replication to assess the reliability of their data.
 
 ## Methods
 
@@ -20,23 +20,27 @@ In Study 2 of their three documented experiments, Suk and Mudita found that part
 
 ### Planned Sample
 
-We aim to collect data from at least 140 participants through crowdsourcing methods, to assure we have at least 70 participants in each of our two conditions. Our plan is to terminate data collection once this minimum is met. We also endeavor to recruit the majority of our participants from the UK, as this was also the case for Suk and Mudita's experiment, and a difference in nationality could present a confound. Other demographic information, such as age and gender, will not be controlled for.
+We aim to collect data from at least 140 participants through crowdsourcing methods, to assure we have at least 70 participants in each of our two conditions. Our plan is to terminate data collection once this minimum is met. Although the majority of participants from the original study came from the UK, we do not control for nationality, or any other demographic variables.
 
 ### Materials
 
-In order to conduct this experiment, we will create a custom website using jsPsych to administer surveys like the ones Suk and Mudita created. We will create one for the cause first, overheads second condition, exactly like the one in Appendix C below, and one for the overheads first, cause second condition, which reverses the order of the first two questions.
+In order to conduct this experiment, we will create a custom website using jsPsych to administer surveys like the ones Suk and Mudita created. We will create one for the cause first, overheads second condition, like the one in Appendix C from the original study, and one for the overheads first, cause second condition, which reverses the order of the first two questions.
 
-![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXf0f_udSlrlCnD8TzGz2L37jSqEa6a2XW9RSR7JQrqxYNpfx76TIoZlJ_5Z8uwj27ZnpDnexH--LMSFL4_AW6gvwSdMjkbduvA2ACJtiNGNraWMj7HiPQ4zc8kXUnBC6afKLQe2LdYFHjJFLEzrs9viwMn6?key=UAqFrNjJSWeCghvO2yePUA)
+The first item in the cause first condition will read, "For the cause:" and have a text box where participants can fill in the amount they want to donate to the charity's cause. The second item will read, "For covering charitable organization's operating expenses," and have a fillable text box as well. Below those boxes will be an item reading "Total," listing the sum total of both of the participants inputs. All values will be indicated in pounds. For the overheads first condition, the order of the first two items is reversed.
 
-We will also ask participants, "How satisfied are you with your donation?", prompting them to input a value on a 7-point Likert scale (1 indicating not at all, 7 indicating complete satisfaction). This value will be an additional independent variable in a series of regression analyses later.
+After they confirm their total donation, we will also ask participants, "How satisfied are you with your donation?", prompting them to input a value on a 7-point Likert scale (1 indicating not at all, 7 indicating complete satisfaction). This value will be an additional independent variable in a series of regression analyses conducted after data collection.
 
 ### Procedure
 
-Our procedure mirrors that of the original study. At the start of our experiment, we state that 20% of our participants will earn 6 pounds (7.77 USD) upon completion of the survey. We then ask participants to list their age, gender, and nationality, before informing them of the way charity organizations use donations to both support their cause and to maintain their operation expenses. We will also inform participants that some charities receive these two kinds of donations separately. As the last part of the information portion of our experiment, we present a non-specific donation campaign for children born with an arm or leg disability in an Asian country. Lastly, we administer a comprehension check to assess whether our participants understood what they had been told.
+Our procedure mirrors that of the original study. At the start of our experiment, we ask for participants' consent. Then, we ask participants to list their age, gender, and nationality. We also state that one fifth of our participants (28 participants minimum) will earn 6 pounds (7.77 USD) upon completion of the survey. To ensure participants understand this, we administer a comprehension check.
 
-Upon reading through the relevant information, participants will be randomly assigned into either the cause first or overhead first conditions. In each condition, all participants are given the opportunity to donate some, all, or none of the 6 pounds they stand to gain by completing this experimient to the donation campaign. Depending on which condition they are placed in, they will be asked to provide the amount they want to donate to the cause first, before being able to indicate the amount they want to donate to the overheads, or vice-versa. Regardless of condition, they will be able to confirm the total amount of money they would be donating to both the cause and the overhead expenses. Participants are reminded that they can donate as much as they want so long as their total does not exceed 6 pounds, and that they can also choose to keep the full six pounds. Lastly, participants are asked to rate their satisfaction with their donation on a Likert scale from 1 to 7.
+We then inform participants of the way charity organizations use donations to both support their cause and to maintain their operation expenses. We will also inform participants that some charities receive these two kinds of donations separately. As the last part of the information portion of our experiment, we present a non-specific donation campaign for children born with an arm or leg disability in an Asian country. This is followed by another comprehension check to assess whether our participants understood what they had been told.
 
-Upon having collected data from 70 participants in each condition, we will randomly select 20% of our participants to earn six pounds. In accordance with what they said they would donate if they earned the six pounds, we will donate the amount they specified to a real charity organization, and send them the remainder.
+Upon reading through the relevant information, participants will be randomly assigned into either the cause first or overhead first conditions. In each condition, all participants are given the opportunity to donate some, all, or none of the 6 pounds they stand to gain by completing this experiment to the donation campaign. Depending on which condition they are placed in, they will be asked to provide the amount they want to donate to the cause first, before being able to indicate the amount they want to donate to the overheads, or vice-versa.
+
+Regardless of condition, participants will be able to confirm the total amount of money they would be donating to both the cause and the overhead expenses. Participants are reminded that they can donate as much as they want so long as their total does not exceed 6 pounds, and that they can also choose to keep the full six pounds. Lastly, participants are asked to rate their satisfaction with their donation on a Likert scale from 1 to 7.
+
+Upon having collected data from 70 participants in each condition, we will randomly select 20% of our participants to earn six pounds. In accordance with what they said they would donate if they earned the six pounds, we will donate the amount they specified to a real charity organization, World Vision, and send them the remainder.
 
 ### Analysis Plan
 
@@ -46,7 +50,7 @@ We then utilize our participants' self-reported satisfaction in a second round o
 
 ### Differences from Original Study
 
-The original experiment was administered as an optional continuation of an unrelated survey. After completing this survey, participants volunteered to take the actual experiment, in return for a 20% chance of earning six pounds. We have chosen not to include this unrelated survey, and instead directly administer the experiment and give all of our participants this 20% chance.
+The original experiment was administered as an optional continuation of an unrelated survey. After completing this survey, participants volunteered to take the actual experiment, in return for a 20% chance of earning six pounds. We have chosen not to include this unrelated survey, and instead directly administer the experiment, giving all of our participants this 20% chance.
 
 ### Methods Addendum (Post Data Collection)
 
@@ -56,30 +60,31 @@ The original experiment was administered as an optional continuation of an unrel
 
 ## Results
 
-### Data preparation
-
-Data preparation following the analysis plan.
-
-```{r include=F}
 ### Data Preparation
-#Using jsPsych, we establish a pipeline from our custom website to a dataset that populates in .csv format as results come in.
+
+Using jsPsych, we will establish a pipeline from our custom website to a dataset that populates in .csv format as results come in. We will monitor this dataset continually, filtering out participants that fail the confirmation checks, until we ensure that we have 70 participants in each condition.
 
 #### Load Relevant Libraries and Functions
-#We will need to load libraries that are necessary for reading, cleaning, and analyzing .csv data. We will also need libraries for performing regression analyses and t-tests.
+
+We will need to load Tidyverse, which is necessary for reading, cleaning, and analyzing .csv data. We will also need lmtest to perform regression analyses with the lm function. T-tests can be conducted in base R using the t.test function.
 
 #### Import data
-#We will import the data using tidyverse's read_csv() function.
+
+We will import the data using the tidyverse library's read_csv() function.
 
 #### Data exclusion / filtering
-#If participants do not pass the confirmation check we administer before they list how much money they would donate, their results will be excluded from the study.
+
+If participants fail both of the confirmation checks we administer before they list how much money they would donate, their results will be excluded from the study.
 
 #### Prepare data for analysis - create columns etc.
-#Each observation will be labeled with a participant ID to eliminate the need for PII. We will need columns in our dataset for the experimental condition, age, gender, nationality, satisfaction, amounts donated to the cause and overheads, the total amount donated, and whether that participant was ssselected to receive 6 pounds or not.
-```
+
+Each observation will be labeled with a participant ID to eliminate the need for personally identifiable information. We will need columns in our dataset for the experimental condition, age, gender, nationality, satisfaction, amounts donated to the cause and overheads, the total amount donated, and whether that participant was selected to receive 6 pounds or not.
 
 ### Confirmatory analysis
 
-We will use a t-test to determine the statistical significance of the difference between the mean amounts donated in the cause first and overheads first conditions. We will also use a regression analysis to see if age and gender covary with the experimental condition and the total amount donated.
+We will use a t-test to determine the statistical significance of the difference between the mean total amounts donated in the cause first and overheads first conditions. We will also use a regression analysis to see if age and gender covary with the experimental condition and the total amount donated.
+
+Link to repository: <https://github.com/ucsd-psych201a/suk2023>
 
 ### Exploratory analyses
 
