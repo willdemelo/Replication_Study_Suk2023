@@ -30,7 +30,7 @@
    type: jsPsychHtmlKeyboardResponse,
    stimulus: `
       <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
-      <p>You can only donate a total that is equal to or less than six pounds.</p>
+      <p>You can only donate a total that is equal to or less than 8 US dollars.</p>
       <p>Press any key to begin.</p>
    `
  };
@@ -45,8 +45,8 @@
 
  // Define questions and shuffle their order
  let questions = [
-   {prompt: 'For the cause (£):', required: true},
-   {prompt: 'For covering charitable organizations’ operating expense (£):', required: true}
+   {prompt: 'For the cause ($):', required: true},
+   {prompt: 'For covering charitable organizations’ operating expense ($):', required: true}
  ];
 
  // Shuffle questions
@@ -65,7 +65,7 @@
      let sumDiv = document.createElement("div");
      sumDiv.id = "sum-display";
      sumDiv.style.marginTop = "10px";
-     sumDiv.innerHTML = "<strong>Total Donation (£): </strong><span id='sum-value'>0</span>";
+     sumDiv.innerHTML = "<strong>Total Donation ($): </strong><span id='sum-value'>0</span>";
      document.querySelector(".jspsych-content").appendChild(sumDiv);
 
      let warningDiv = document.createElement("div");
@@ -73,7 +73,7 @@
      warningDiv.style.color = "red";
      warningDiv.style.marginTop = "5px";
      warningDiv.style.display = "none";
-     warningDiv.innerText = "Total donation cannot exceed 6 pounds and only numerical values are allowed.";
+     warningDiv.innerText = "Total donation cannot exceed 8 US dollars and only numerical values are allowed.";
      document.querySelector(".jspsych-content").appendChild(warningDiv);
 
      // Reference to the Continue button
@@ -88,7 +88,7 @@
        document.getElementById("sum-value").innerText = sum.toFixed(2); // Display sum with two decimals
 
        // Validate sum
-       if (sum > 6) {
+       if (sum > 8) {
          warningDiv.style.display = "block";  // Show warning message
          continueButton.disabled = true;      // Disable submit button
        } else {
@@ -97,13 +97,13 @@
        }
      }
 
-     // Add event listeners to restrict input to numeric and enforce max of 6 pounds
+     // Add event listeners to restrict input to numeric and enforce max of 8 dollars
      document.querySelectorAll(".jspsych-survey-text-question input").forEach(input => {
        input.addEventListener("input", (e) => {
          let value = e.target.value;
 
-         // Allow only numbers and up to 6
-         if (!/^\d*\.?\d*$/.test(value) || parseFloat(value) > 6) {
+         // Allow only numbers and up to 8
+         if (!/^\d*\.?\d*$/.test(value) || parseFloat(value) > 8) {
            e.target.value = value.slice(0, -1); // Remove last entered character if invalid
          } else {
            updateSum(); // Only update sum if input is valid
