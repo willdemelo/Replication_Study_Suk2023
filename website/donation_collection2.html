@@ -98,9 +98,17 @@
  // Satisfaction survey
  var satisfaction = {
    type: jsPsychSurveyMultiChoice,
+   preamble: "Please answer the following questions on a scale from 1 to 7.",
    questions: [
      {
-       prompt: "On a scale of 1 to 7, how satisfied are you with your donation?", 
+       prompt: "How satisfied are you with your donation? (1 = Not at all, 7 = Completely satisfied)",
+       name: 'Satisfaction', 
+       options: ['1', '2', '3', '4', '5', '6', '7'], 
+       required: true,
+       horizontal: true
+     },
+    {
+       prompt: "How often do you donate to charity? (1 = Never, 7 = Always)", 
        name: 'Satisfaction', 
        options: ['1', '2', '3', '4', '5', '6', '7'], 
        required: true,
