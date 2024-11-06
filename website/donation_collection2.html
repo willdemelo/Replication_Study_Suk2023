@@ -35,7 +35,7 @@
    `
  };
 
- // Cause input trial with sum display
+ // Cause input trial with sum display and validation
  var trial = {
    type: jsPsychSurveyText,
    questions: [
@@ -43,20 +43,37 @@
      {prompt: 'For covering charitable organizations’ operating expense (£):', required: true}
    ],
    on_load: function() {
-     // Create a div element to show the sum
+     // Create elements to show the sum and warning message
      let sumDiv = document.createElement("div");
      sumDiv.id = "sum-display";
      sumDiv.style.marginTop = "10px";
      sumDiv.innerHTML = "<strong>Total Donation (£): </strong><span id='sum-value'>0</span>";
      document.querySelector(".jspsych-content").appendChild(sumDiv);
 
-     // Function to update the sum
+     let warningDiv = document.createElement("div");
+     warningDiv.id = "warning-message";
+     warningDiv.style.color = "red";
+     warningDiv.style.marginTop = "5px";
+     warningDiv.style.display = "none";
+     warningDiv.innerText = "Total donation cannot exceed 6 pounds.";
+     document.querySelector(".jspsych-content").appendChild(warningDiv);
+
+     // Function to update the sum and validate input
      function updateSum() {
        let inputs = document.querySelectorAll(".jspsych-survey-text-question input");
        let value1 = parseFloat(inputs[0].value) || 0;
        let value2 = parseFloat(inputs[1].value) || 0;
        let sum = value1 + value2;
        document.getElementById("sum-value").innerText = sum.toFixed(2); // Display sum with two decimals
+
+       // Validate sum
+       if (sum > 6) {
+         warningDiv.style.display = "block";  // Show warning message
+         document.querySelector("button.jspsych-btn").disabled = true;  // Disable submit button
+       } else {
+         warningDiv.style.display = "none";   // Hide warning message
+         document.querySelector("button.jspsych-btn").disabled = false; // Enable submit button
+       }
      }
 
      // Add event listeners to both input fields to update the sum on change
