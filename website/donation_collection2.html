@@ -35,13 +35,31 @@
    `
  };
 
- // Cause input trial with sum display and validation
+ // Utility function to shuffle an array
+ function shuffleArray(array) {
+   for (let i = array.length - 1; i > 0; i--) {
+     const j = Math.floor(Math.random() * (i + 1));
+     [array[i], array[j]] = [array[j], array[i]];
+   }
+ }
+
+ // Define questions and shuffle their order
+ let questions = [
+   {prompt: 'For the cause (£):', required: true},
+   {prompt: 'For covering charitable organizations’ operating expense (£):', required: true}
+ ];
+
+ // Shuffle questions
+ shuffleArray(questions);
+
+ // Record order of questions
+ let questionOrder = questions.map(q => q.prompt);
+
+ // Cause input trial with randomized questions and sum display
  var trial = {
    type: jsPsychSurveyText,
-   questions: [
-     {prompt: 'For the cause (£):', required: true},
-     {prompt: 'For covering charitable organizations’ operating expense (£):', required: true}
-   ],
+   questions: questions,
+   data: {questionOrder: questionOrder},
    on_load: function() {
      // Create elements to show the sum and warning message
      let sumDiv = document.createElement("div");
@@ -103,13 +121,13 @@
      {
        prompt: "How satisfied are you with your donation?",
        name: 'Satisfaction', 
-       options: ['1', '2', '3', '4', '5', '6', '7''], 
+       options: ['1', '2', '3', '4', '5', '6', '7'], 
        required: true,
        horizontal: true
      },
     {
        prompt: "How often do you donate to charity?", 
-       name: 'Satisfaction', 
+       name: 'Frequency', 
        options: ['1', '2', '3', '4', '5', '6', '7'], 
        required: true,
        horizontal: true
