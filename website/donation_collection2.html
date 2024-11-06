@@ -55,7 +55,7 @@
      warningDiv.style.color = "red";
      warningDiv.style.marginTop = "5px";
      warningDiv.style.display = "none";
-     warningDiv.innerText = "Total donation cannot exceed 6 pounds.";
+     warningDiv.innerText = "Total donation cannot exceed 6 pounds and only numerical values are allowed.";
      document.querySelector(".jspsych-content").appendChild(warningDiv);
 
      // Function to update the sum and validate input
@@ -76,9 +76,18 @@
        }
      }
 
-     // Add event listeners to both input fields to update the sum on change
+     // Add event listeners to restrict input to numeric and enforce max of 6 pounds
      document.querySelectorAll(".jspsych-survey-text-question input").forEach(input => {
-       input.addEventListener("input", updateSum);
+       input.addEventListener("input", (e) => {
+         let value = e.target.value;
+
+         // Allow only numbers and up to 6
+         if (!/^\d*\.?\d*$/.test(value) || parseFloat(value) > 6) {
+           e.target.value = value.slice(0, -1); // Remove last entered character if invalid
+         } else {
+           updateSum(); // Only update sum if input is valid
+         }
+       });
      });
    }
  };
@@ -107,4 +116,4 @@
  jsPsych.run(timeline);
 
  </script>
-</html>
+</html> 
