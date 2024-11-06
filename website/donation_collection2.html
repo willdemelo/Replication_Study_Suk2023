@@ -58,6 +58,9 @@
      warningDiv.innerText = "Total donation cannot exceed 6 pounds and only numerical values are allowed.";
      document.querySelector(".jspsych-content").appendChild(warningDiv);
 
+     // Reference to the Continue button
+     const continueButton = document.querySelector("button.jspsych-btn");
+
      // Function to update the sum and validate input
      function updateSum() {
        let inputs = document.querySelectorAll(".jspsych-survey-text-question input");
@@ -69,10 +72,10 @@
        // Validate sum
        if (sum > 6) {
          warningDiv.style.display = "block";  // Show warning message
-         document.querySelector("button.jspsych-btn").disabled = true;  // Disable submit button
+         continueButton.disabled = true;      // Disable submit button
        } else {
          warningDiv.style.display = "none";   // Hide warning message
-         document.querySelector("button.jspsych-btn").disabled = false; // Enable submit button
+         continueButton.disabled = false;     // Enable submit button
        }
      }
 
@@ -116,4 +119,4 @@
  jsPsych.run(timeline);
 
  </script>
-</html> 
+</html>
