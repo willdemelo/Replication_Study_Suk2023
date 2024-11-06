@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <!-- Load jsPsych and plugins -->
+   <title>rt experiment</title>
+   <script src="https://unpkg.com/jspsych@8.0.0"></script>
+   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+   <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />   
+   <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+ </head>
+ <body> </body>
+ <script>
+ var jsPsych = initJsPsych({
+   on_finish: function () {
+     jsPsych.data.displayData();
+   }
+ });
+
+ var timeline = [];
+
+ // Welcome message
+ var welcome = {
+   type: jsPsychHtmlKeyboardResponse,
+   stimulus: "Welcome to the experiment. Press any key to begin."
+ };
+
+ // Instructions
+ var instructions = {
+   type: jsPsychHtmlKeyboardResponse,
+   stimulus: `
+      <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
+      <p>You can only donate a total that is equal to or less than six pounds.</p>
+      <p>Press any key to begin.</p>
+   `
+ };
+
+ // Cause input trial with sum display
+ var trial = {
+   type: jsPsychSurveyText,
+   questions: [
+     {prompt: 'For the cause (£):', required: true},
+     {prompt: 'For covering charitable organizations’ operating expense (£):', required: true}
+   ],
+   on_load: function() {
+     // Create a div element to show the sum
+     let sumDiv = document.createElement("div");
+     sumDiv.id = "sum-display";
+     sumDiv.style.marginTop = "10px";
+     sumDiv.innerHTML = "<strong>Total Donation (£): </strong><span id='sum-value'>0</span>";
+     document.querySelector(".jspsych-content").appendChild(sumDiv);
+
+     // Function to update the sum
+     function updateSum() {
+       let inputs = document.querySelectorAll(".jspsych-survey-text-question input");
+       let value1 = parseFloat(inputs[0].value) || 0;
+       let value2 = parseFloat(inputs[1].value) || 0;
+       let sum = value1 + value2;
+       document.getElementById("sum-value").innerText = sum.toFixed(2); // Display sum with two decimals
+     }
+
+     // Add event listeners to both input fields to update the sum on change
+     document.querySelectorAll(".jspsych-survey-text-question input").forEach(input => {
+       input.addEventListener("input", updateSum);
+     });
+   }
+ };
+
+ // Satisfaction survey
+ var satisfaction = {
+   type: jsPsychSurveyMultiChoice,
+   questions: [
+     {
+       prompt: "On a scale of 1 to 7, how satisfied are you with your donation?", 
+       name: 'Satisfaction', 
+       options: ['1', '2', '3', '4', '5', '6', '7'], 
+       required: true,
+       horizontal: true
+     }
+   ]
+ };
+
+ // Add trials to the timeline
+ timeline.push(welcome);
+ timeline.push(instructions);
+ timeline.push(trial);
+ timeline.push(satisfaction);
+
+ // Run the experiment
+ jsPsych.run(timeline);
+
+ </script>
+</html>
