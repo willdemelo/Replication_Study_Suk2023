@@ -123,14 +123,16 @@
        name: 'Satisfaction', 
        options: ['1', '2', '3', '4', '5', '6', '7'], 
        required: true,
-       horizontal: true
+       horizontal: true,
+       scale_labels: { left: ‘Not satisfied at all’, right: ‘Very satisfied’}
      },
     {
        prompt: "How often do you donate to charity?", 
        name: 'Frequency', 
        options: ['1', '2', '3', '4', '5', '6', '7'], 
        required: true,
-       horizontal: true
+       horizontal: true,
+       scale_labels: { left: ‘Never’, right: ‘Always’}
      }
    ]
  };
