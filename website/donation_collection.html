@@ -7,9 +7,6 @@
    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
    <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />   
    <script src="https://unpkg.com/@jspsych/plugin-html-slider-response@2.0.0"></script>
-   
-
-
  </head>
  <body> </body>
  <script>
@@ -36,12 +33,11 @@
       <p>Press any key to begin.</p>
       `
     };
-
     //cause input
     var causeinput = {
     type: jsPsychHtmlKeyboardResponse,
     choices: ["ALL_KEYS"],
-    stimulus: "<For covering charitable organizations' operating expenses>"
+    stimulus: "<For supporting charitable organizations' cause>"
     };
     //overhead input
     var overinput = {
@@ -64,7 +60,8 @@
     require_movement: true,
     labels: ['1', '2', '3', '4', '5', '6', '7']};
 
-    
+    timeline.push(welcome);
+    timeline.push(instructions);
     timeline.push(causeinput);
     timeline.push(overinput);
     timeline.push(satisfaction);
