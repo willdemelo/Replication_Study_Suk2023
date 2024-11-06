@@ -56,62 +56,62 @@
  let questionOrder = questions.map(q => q.prompt);
 
  // Cause input trial with randomized questions and sum display
- var trial = {
-   type: jsPsychSurveyText,
-   questions: questions,
-   data: {questionOrder: questionOrder},
-   on_load: function() {
-     // Create elements to show the sum and warning message
-     let sumDiv = document.createElement("div");
-     sumDiv.id = "sum-display";
-     sumDiv.style.marginTop = "10px";
-     sumDiv.innerHTML = "<strong>Total Donation ($): </strong><span id='sum-value'>0</span>";
-     document.querySelector(".jspsych-content").appendChild(sumDiv);
+var trial = {
+  type: jsPsychSurveyText,
+  questions: questions,
+  data: {questionOrder: questionOrder},
+  on_load: function() {
+    // Create elements to show the sum and warning message
+    let sumDiv = document.createElement("div");
+    sumDiv.id = "sum-display";
+    sumDiv.style.marginTop = "10px";
+    sumDiv.innerHTML = "<strong>Total Donation ($): </strong><span id='sum-value'>0</span>";
+    document.querySelector(".jspsych-content").appendChild(sumDiv);
 
-     let warningDiv = document.createElement("div");
-     warningDiv.id = "warning-message";
-     warningDiv.style.color = "red";
-     warningDiv.style.marginTop = "5px";
-     warningDiv.style.display = "none";
-     warningDiv.innerText = "Total donation cannot exceed 8 US dollars and only numerical values are allowed.";
-     document.querySelector(".jspsych-content").appendChild(warningDiv);
+    let warningDiv = document.createElement("div");
+    warningDiv.id = "warning-message";
+    warningDiv.style.color = "red";
+    warningDiv.style.marginTop = "5px";
+    warningDiv.style.display = "none";
+    warningDiv.innerText = "Total donation cannot exceed 8 US dollars and only numerical values are allowed.";
+    document.querySelector(".jspsych-content").appendChild(warningDiv);
 
-     // Reference to the Continue button
-     const continueButton = document.querySelector("button.jspsych-btn");
+    // Reference to the Continue button
+    const continueButton = document.querySelector("button.jspsych-btn");
 
-     // Function to update the sum and validate input
-     function updateSum() {
-       let inputs = document.querySelectorAll(".jspsych-survey-text-question input");
-       let value1 = parseFloat(inputs[0].value) || 0;
-       let value2 = parseFloat(inputs[1].value) || 0;
-       let sum = value1 + value2;
-       document.getElementById("sum-value").innerText = sum.toFixed(2); // Display sum with two decimals
+    // Function to update the sum and validate input
+    function updateSum() {
+      let inputs = document.querySelectorAll(".jspsych-survey-text-question input");
+      let value1 = parseFloat(inputs[0].value) || 0;
+      let value2 = parseFloat(inputs[1].value) || 0;
+      let sum = value1 + value2;
+      document.getElementById("sum-value").innerText = sum.toFixed(2); // Display sum with two decimals
 
-       // Validate sum
-       if (sum > 8) {
-         warningDiv.style.display = "block";  // Show warning message
-         continueButton.disabled = true;      // Disable submit button
-       } else {
-         warningDiv.style.display = "none";   // Hide warning message
-         continueButton.disabled = false;     // Enable submit button
-       }
-     }
+      // Validate sum
+      if (sum > 8) {
+        warningDiv.style.display = "block";  // Show warning message
+        continueButton.disabled = true;      // Disable submit button
+      } else {
+        warningDiv.style.display = "none";   // Hide warning message
+        continueButton.disabled = false;     // Enable submit button
+      }
+    }
 
-     // Add event listeners to restrict input to numeric and enforce max of 8 dollars
-     document.querySelectorAll(".jspsych-survey-text-question input").forEach(input => {
-       input.addEventListener("input", (e) => {
-         let value = e.target.value;
+    // Add event listeners to restrict input to numeric and enforce max of 8 dollars
+    document.querySelectorAll(".jspsych-survey-text-question input").forEach(input => {
+      input.addEventListener("input", (e) => {
+        let value = e.target.value;
 
-         // Allow only numbers and up to 8
-         if (!/^\d*\.?\d*$/.test(value) || parseFloat(value) > 8) {
-           e.target.value = value.slice(0, -1); // Remove last entered character if invalid
-         } else {
-           updateSum(); // Only update sum if input is valid
-         }
-       });
-     });
-   }
- };
+        // Allow only numbers and up to 8
+        if (!/^\d*\.?\d*$/.test(value) || parseFloat(value) > 8) {
+          e.target.value = value.slice(0, -1); // Remove last entered character if invalid
+        } else {
+          updateSum(); // Only update sum if input is valid
+        }
+      });
+    });
+  }
+};
 
  // Satisfaction survey
  var satisfaction = {
