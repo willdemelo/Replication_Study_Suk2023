@@ -154,10 +154,10 @@ var unrelatedSurveyQuestions = [
  var donationTrial = {
    type: jsPsychHtmlKeyboardResponse,
    stimulus: function() {
-     // Define the HTML elements for the input fields and record labels
+     // Define the HTML elements for the input fields and record labels, adding `min="0"` and spacing
      let inputs = [
-       {html: `<div><label>For the cause ($):</label><input type="number" id="causeInput" required /></div>`, label: "For the cause ($)"},
-       {html: `<div><label>For covering charitable organizations’ operating expense ($):</label><input type="number" id="expenseInput" required /></div>`, label: "For covering charitable organizations’ operating expense ($)"}
+       {html: `<div style="margin-bottom: 15px;"><label>For the cause ($):</label><input type="number" id="causeInput" min="0" required /></div>`, label: "For the cause ($)"},
+       {html: `<div style="margin-bottom: 15px;"><label>For covering charitable organizations’ operating expense ($):</label><input type="number" id="expenseInput" min="0" required /></div>`, label: "For covering charitable organizations’ operating expense ($)"}
      ];
      
      // Shuffle the inputs
