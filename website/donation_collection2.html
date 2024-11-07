@@ -25,6 +25,113 @@
    stimulus: "Welcome to the experiment. Press any key to begin."
  };
 
+// Define the survey questions section
+var unrelatedSurveyQuestions = [
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "On average, how many hours of sleep do you get per night?",
+        options: ["More than 10 hours", "9-10 hours", "7-8 hours", "5-6 hours", "4 hours or less"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-text",
+    questions: [
+      {
+        prompt: "In one sentence, describe your favorite hobby.",
+        placeholder: "Type your answer here",
+        rows: 2,
+        columns: 50,
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "On average, how much time do you spend on this hobby daily?",
+        options: ["More than 2 hours", "90-120 minutes", "60-90 minutes", "30-60 minutes", "Less than 30 minutes"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-likert",
+    questions: [
+      {
+        prompt: "How often during the day do you wish you had more time for this hobby?",
+        labels: ["Not at all", "Rarely", "Sometimes", "Often", "Always"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "What is your preferred way to unwind after a busy day?",
+        options: ["Watching TV or movies", "Reading", "Physical exercise (e.g., jogging, gym)", "Socializing with friends/family", "Other (please specify)"],
+        required: true
+      }
+    ],
+    data: { is_optional: true }
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "How many hours per day do you typically spend on social media?",
+        options: ["Less than 1 hour", "1-2 hours", "3-4 hours", "More than 4 hours"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "How often do you shop online?",
+        options: ["Rarely", "Once a month", "Weekly", "Multiple times a week"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "Where do you prefer to spend your free time?",
+        options: ["Mostly indoors", "Mostly outdoors", "Both equally"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-likert",
+    questions: [
+      {
+        prompt: "How would you rate the typical stress level of your weekdays?",
+        labels: ["Not stressful", "Slightly stressful", "Moderately stressful", "Very stressful", "Extremely stressful"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "How frequently do you feel productive during the day?",
+        options: ["Rarely", "Occasionally", "Most days", "Almost every day"],
+        required: true
+      }
+    ]
+  }
+];
+  
  // Instructions
  var instructions = {
    type: jsPsychHtmlKeyboardResponse,
