@@ -8,6 +8,7 @@
    <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />   
    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+   <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
  </head>
  <body> </body>
  <script>
@@ -18,7 +19,10 @@
  });
 
  var timeline = [];
-
+  
+ const subject_id = jsPsych.randomization.randomID(10);
+ const filename = `${subject_id}.csv`;
+            
  // Welcome message
  var welcome = {
    type:  jsPsychHtmlKeyboardResponse,
@@ -270,6 +274,13 @@ var unrelatedSurveyQuestions = [
 
  // Run the experiment
  jsPsych.run(timeline);
-
+ 
+ const save_data = {
+   type: jsPsychPipe,
+   action: "save",
+   experiment_id: "g4EDTsGKfpJp",
+   filename: filename,
+   data_string: ()=>jsPsych.data.get().csv()
+ };
  </script>
 </html>
