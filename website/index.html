@@ -12,11 +12,11 @@
    <style>
        /* Global style for text wrapping */
        .wrap-text {
-           max-width: 700px; /* Adjust width as needed */
+           max-width: 800px; /* Adjust width as needed */
            margin: 0 auto;
            line-height: 1.5;
            white-space: normal;
-           text-align: center;
+           text-align: left;
        }
    </style>
  </head>
@@ -148,48 +148,46 @@ var unrelatedSurveyQuestions = [
 ];
 
 var prizeExplanationAndCheck = {
-   type: jsPsychHtmlKeyboardResponse,
-   stimulus: `
+   type: jsPsychSurveyMultiChoice,
+   preamble: `
       <div class="wrap-text">
          <p>Thank you for completing the survey on your lifestyle.</p>
          <p>Please note 20% of participants will be randomly selected to receive an additional 8 USD as a bonus prize. 
          If you are selected, you will have the option to donate some or all of this bonus to a charitable cause, 
          or to keep the full amount. This selection is completely random, and everyone has an equal chance of winning the bonus prize.</p>
-
-         <p>What is the chance you will receive an additional 8 USD with the option to donate?</p>
-         <label><input type="radio" name="chance" value="50%"> 50%</label><br>
-         <label><input type="radio" name="chance" value="20%"> 20%</label><br>
-         <label><input type="radio" name="chance" value="10%"> 10%</label><br>
       </div>
    `,
-   choices: [' '], // Blank array to remove need for a key press
-   on_finish: function(data) {
-      // Capture the selected response
-      var response = document.querySelector('input[name="chance"]:checked');
-      data.chance_response = response ? response.value : null;
-   }
+   questions: [
+      {
+         prompt: "What is the chance you will receive an additional 8 USD with the option to donate?",
+         name: 'chance_response',
+         options: ["50%", "20%", "10%"],
+         required: true
+      }
+   ]
 };
 
 var overheadInformationAndCheck = {
-   type: jsPsychHtmlKeyboardResponse,
-   stimulus: `
+   type: jsPsychSurveyMultiChoice,
+   preamble: `
       <div class="wrap-text">
          <p>Charitable organizations use donated money in two ways: (1) helping the cause and (2) covering the organization’s operations (i.e., overhead costs). 
          Some charities separate donations for the cause and for overhead expenses.</p>
-         
-         <p>How do charities use their donations?</p>
-         <label><input type="radio" name="donation_use" value="To support an advertised cause"> To support an advertised cause</label><br>
-         <label><input type="radio" name="donation_use" value="To maintain their necessary expenses"> To maintain their necessary expenses</label><br>
-         <label><input type="radio" name="donation_use" value="All of the above"> All of the above</label><br>
-         <label><input type="radio" name="donation_use" value="None of the above"> None of the above</label><br>
       </div>
    `,
-   choices: [' '], // Blank array to prevent needing a key press
-   on_finish: function(data) {
-      // Capture the selected response
-      var response = document.querySelector('input[name="donation_use"]:checked');
-      data.donation_use_response = response ? response.value : null;
-   }
+   questions: [
+      {
+         prompt: "How do charities use their donations?",
+         name: 'donation_use_response',
+         options: [
+            "To support an advertised cause", 
+            "To maintain their necessary expenses", 
+            "All of the above", 
+            "None of the above"
+         ],
+         required: true
+      }
+   ]
 };
 
 
@@ -199,6 +197,7 @@ var charityDescription = {
    <div class="wrap-text">
     <p>Today, you’ll have the opportunity to support a campaign aiding children born with disabilities in Asia, run by a trustworthy charity.</p>
     <p>Press any key to continue.</p>
+   </div>
  `
 };
   
@@ -210,6 +209,7 @@ var charityDescription = {
       <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
       <p>You can only donate a total that is equal to or less than 8 USD.</p>
       <p>Press any key to continue.</p>
+    </div>
    `
  };
 
@@ -345,6 +345,7 @@ var endSurvey = {
    <div class="wrap-text">
     <p>Thank you for your participation in this study. If you are selected to receive a prize, we will contact you by the end of December.</p>
     <p>Press any key to save your response.</p>
+   </div>
   `
 };
 
