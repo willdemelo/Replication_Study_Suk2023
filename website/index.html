@@ -19,6 +19,16 @@
         white-space: normal;
         text-align: left;
       }
+      /* Remove arrows on number input fields across browsers */
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        margin: 0; 
+      }
+      input[type=number] {
+        -moz-appearance: textfield; /* Firefox */
+        appearance: textfield;
+      }
     </style>
   </head>
   <body></body>
@@ -298,14 +308,14 @@
     }
 
     // Custom donation input trial with sum validation, randomized order, and order recording
-     // Custom donation input trial with sum validation, randomized order, and order recording
     var donationTrial = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: function() {
         // Preamble message
         const preamble = `
         <div style="margin-bottom: 20px; font-weight: bold;">
-            Remember, you can donate as little or as much as you want, as long as the total does not exceed $8. Any amount not donated will be awarded to you as a prize if you win.
+            <p>Remember, you can donate as little or as much as you want, as long as the total does not exceed $8.</p> 
+            <p>Any amount not donated will be awarded to you as a prize if you win.</p>
         </div>
         `;
 
@@ -323,11 +333,11 @@
         {
             html: `
             <div style="margin-bottom: 15px;">
-                <label>For covering charitable organizations' operating expense ($): </label>
+                <label>For covering charitable organizations’ operating expense ($): </label>
                 <input type="number" id="expenseInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
             </div>
             `,
-            label: "For covering charitable organizations' operating expense ($)"
+            label: "For covering charitable organizations’ operating expense ($)"
         }
         ];
         
@@ -392,22 +402,22 @@
     }
     };
 
- // Satisfaction survey
-var satisfaction = {
-  type: jsPsychSurveyLikert,
-  questions: [
-    {
-      prompt: "Please indicate your agreement with the following questions. <br> I am satisfied with my donation. (1 = not at all, 7 = very much)",
-      labels: ["1", "2", "3", "4", "5", "6", "7"],
-      required: true
-    },
-    {
-      prompt: "I usually donate to charity. (1 = not at all, 7 = very much)",
-      labels: ["1", "2", "3", "4", "5", "6", "7"],
-      required: true
-    }
-  ]
-};
+    // Satisfaction survey
+    var satisfaction = {
+      type: jsPsychSurveyLikert,
+      questions: [
+        {
+          prompt: "Please indicate your agreement with the following questions. <br> I am satisfied with my donation. (1 = not at all, 7 = very much)",
+          labels: ["1", "2", "3", "4", "5", "6", "7"],
+          required: true
+        },
+        {
+          prompt: "I usually donate to charity. (1 = not at all, 7 = very much)",
+          labels: ["1", "2", "3", "4", "5", "6", "7"],
+          required: true
+        }
+      ]
+    };
 
     function validateDemographics(response) {
       const age = parseInt(response.age, 10);
