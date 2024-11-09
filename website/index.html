@@ -108,7 +108,7 @@
               "Socializing with friends/family",
               "Other (please specify)"
             ],
-            required: true
+            required: true,
             textbox_placeholder: "If other, please specify here." // Enables a text box for "Other"
           }
         ]
@@ -328,7 +328,7 @@
 
     // Add trials to the timeline
     timeline.push(welcome);
-    timeline = timeline.concat(unrelatedSurveyQuestions); // Add unrelated survey
+    timeline.push(...unrelatedSurveyQuestions);
     timeline.push(prizeExplanationAndCheck, overheadInformationAndCheck, charityDescription);
     timeline.push(instructions);
     timeline.push(donationTrial);
