@@ -52,11 +52,11 @@
               "9-10 hours",
               "7-8 hours",
               "5-6 hours",
-              "4 hours or less",
+              "4 hours or less"
             ],
-            required: true,
-          },
-        ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyText,
@@ -66,9 +66,9 @@
             placeholder: "Type your answer here",
             rows: 2,
             columns: 50,
-            required: true,
-          },
-        ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyMultiChoice,
@@ -80,22 +80,21 @@
               "90-120 minutes",
               "60-90 minutes",
               "30-60 minutes",
-              "Less than 30 minutes",
+              "Less than 30 minutes"
             ],
-            required: true,
-          },
-        ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyLikert,
         questions: [
           {
-            prompt:
-              "How often during the day do you wish you had more time for this hobby?",
+            prompt: "How often during the day do you wish you had more time for this hobby?",
             labels: ["Not at all", "Rarely", "Sometimes", "Often", "Always"],
-            required: true,
-          },
-        ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyMultiChoice,
@@ -107,41 +106,55 @@
               "Reading",
               "Physical exercise (e.g., jogging, gym)",
               "Socializing with friends/family",
-              "Other (please specify)",
+              "Other (please specify)"
             ],
-            required: true,
-          },
-        ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyMultiChoice,
         questions: [
           {
             prompt: "How many hours per day do you typically spend on social media?",
-            options: ["Less than 1 hour", "1-2 hours", "3-4 hours", "More than 4 hours"],
-            required: true,
-          },
-        ],
+            options: [
+              "Less than 1 hour",
+              "1-2 hours",
+              "3-4 hours",
+              "More than 4 hours"
+            ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyMultiChoice,
         questions: [
           {
             prompt: "How often do you shop online?",
-            options: ["Rarely", "Once a month", "Weekly", "Multiple times a week"],
-            required: true,
-          },
-        ],
+            options: [
+              "Rarely",
+              "Once a month",
+              "Weekly",
+              "Multiple times a week"
+            ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyMultiChoice,
         questions: [
           {
             prompt: "Where do you prefer to spend your free time?",
-            options: ["Mostly indoors", "Mostly outdoors", "Both equally"],
-            required: true,
-          },
-        ],
+            options: [
+              "Mostly indoors",
+              "Mostly outdoors",
+              "Both equally"
+            ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyLikert,
@@ -153,44 +166,177 @@
               "Slightly stressful",
               "Moderately stressful",
               "Very stressful",
-              "Extremely stressful",
+              "Extremely stressful"
             ],
-            required: true,
-          },
-        ],
+            required: true
+          }
+        ]
       },
       {
         type: jsPsychSurveyMultiChoice,
         questions: [
           {
             prompt: "How frequently do you feel productive during the day?",
-            options: ["Rarely", "Occasionally", "Most days", "Almost every day"],
-            required: true,
-          },
-        ],
-      },
+            options: [
+              "Rarely",
+              "Occasionally",
+              "Most days",
+              "Almost every day"
+            ],
+            required: true
+          }
+        ]
+      }
     ];
 
-    // Instructions
-    var instructions = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus:
-        "Thank you for completing the survey. Press any key to continue.",
+    var prizeExplanationAndCheck = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: `
+        <div class="wrap-text">
+          <p>Thank you for completing the survey on your lifestyle.</p>
+          <p>Please note 20% of participants will be randomly selected to receive an additional 8 USD as a bonus prize. 
+          If you are selected, you will have the option to donate some or all of this bonus to a charitable cause, 
+          or to keep the full amount. This selection is completely random, and everyone has an equal chance of winning the bonus prize.</p>
+        </div>
+      `,
+      questions: [
+        {
+          prompt: "What is the chance you will receive an additional 8 USD with the option to donate?",
+          name: 'chance_response',
+          options: ["50%", "20%", "10%"],
+          required: true
+        }
+      ]
     };
 
-    // Add unrelated survey questions to the timeline
+    var overheadInformationAndCheck = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: `
+        <div class="wrap-text">
+          <p>Charitable organizations use donated money in two ways: (1) helping the cause and (2) covering the organization’s operations (i.e., overhead costs). 
+          Some charities separate donations for the cause and for overhead expenses.</p>
+        </div>
+      `,
+      questions: [
+        {
+          prompt: "How do charities use their donations?",
+          name: 'donation_use_response',
+          options: [
+            "To support an advertised cause", 
+            "To maintain their necessary expenses", 
+            "All of the above", 
+            "None of the above"
+          ],
+          required: true
+        }
+      ]
+    };
+
+    var charityDescription = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <p>Today, you’ll have the opportunity to support a campaign aiding children born with disabilities in Asia, run by a trustworthy charity.</p>
+          <p>Press any key to continue.</p>
+        </div>
+      `,
+    };
+
+    var instructions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
+          <p>You can only donate a total that is equal to or less than 8 USD.</p>
+          <p>Press any key to continue.</p>
+        </div>
+      `,
+    };
+
+    var donationTrial = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "Donation trial (not modified)."
+    };
+
+    var satisfaction = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: "Please answer the following questions on a scale from 1 to 7.",
+      questions: [
+        {
+          prompt: "How satisfied are you with your donation? (1 = Not satisfied at all, 7 = Very satisfied)",
+          name: 'Satisfaction', 
+          options: ['1', '2', '3', '4', '5', '6', '7'], 
+          required: true,
+          horizontal: true
+        },
+        {
+          prompt: "How often do you donate to charity? (1 = Never, 7 = Very often)", 
+          name: 'Frequency', 
+          options: ['1', '2', '3', '4', '5', '6', '7'], 
+          required: true,
+          horizontal: true
+        }
+      ]
+    };
+
+    var demographics = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: "Please enter your age (whole number only):", name: 'age', required: true},
+        {prompt: "Please enter your nationality:", name: 'nationality', required: true}
+      ]
+    };
+
+    var gender = {
+      type: jsPsychSurveyMultiChoice,
+      questions: [
+        {
+          prompt: "Please select your gender:",
+          name: 'gender',
+          options: ['Male', 'Female', 'Non-binary', 'Prefer not to say', 'Other'],
+          required: true,
+          horizontal: false
+        }
+      ]
+    };
+
+    var comments = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: "If you have any comments about this study, please leave them here."}
+      ]
+    };
+
+    var endSurvey = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <p>Thank you for your participation in this study. If you are selected to receive a prize, we will contact you by the end of December.</p>
+          <p>Press any key to save your response.</p>
+        </div>
+      `,
+    };
+
+    const save_data = {
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "g4EDTsGKfpJp",
+      filename: filename,
+      data_string: () => jsPsych.data.get().csv(),
+    };
+
+    // Add trials to the timeline
     timeline.push(welcome);
-    timeline = timeline.concat(unrelatedSurveyQuestions);
+    timeline = timeline.concat(unrelatedSurveyQuestions); // Add unrelated survey
     timeline.push(prizeExplanationAndCheck, overheadInformationAndCheck, charityDescription);
     timeline.push(instructions);
-    timeline.push(donationTrial); // Using custom donation trial
+    timeline.push(donationTrial);
     timeline.push(satisfaction);
     timeline.push(demographics);
     timeline.push(gender);
     timeline.push(comments, endSurvey);
     timeline.push(save_data);
 
-    // Run the experiment
     jsPsych.run(timeline);
   </script>
 </html>
