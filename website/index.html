@@ -450,7 +450,7 @@ var satisfaction = {
       stimulus: `
         <div class="wrap-text">
           <p>Thank you for your participation in this study. If you are selected to receive a prize, we will contact you by the end of December.</p>
-          <p>Press any key to save your response.</p>
+          <p>You can close this experiment.</p>
         </div>
       `,
     };
@@ -474,8 +474,9 @@ var satisfaction = {
     timeline.push(satisfaction);
     timeline.push(demographics);
     timeline.push(gender);
-    timeline.push(comments, endSurvey);
+    timeline.push(comments);
     timeline.push(save_data);
+    timeline.push(endSurvey);
 
     jsPsych.run(timeline);
   </script>
