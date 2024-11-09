@@ -382,46 +382,21 @@
     };
 
  // Satisfaction survey
-    var satisfaction =    {
-        type: jsPsychSurveyLikert,
-        questions: [
-          {
-            prompt: "Please indicate how much you agree with the following prompts. <br> I am satisfied with my donation. (1 = not at all, 7 = very much)",
-            labels: ["1", "2", "3", "4", "5", "6", "7"],
-            required: true
-          }
-        ]
-      },
-       {
-        type: jsPsychSurveyLikert,
-        questions: [
-          {
-            prompt: "I usually donate to charity. (1 = not at all, 7 = very much)",
-            labels: ["1", "2", "3", "4", "5", "6", "7"],
-            required: true
-          }
-        ]
-      },
+var satisfaction = {
+  type: jsPsychSurveyLikert,
+  questions: [
     {
-      type: jsPsychSurveyLikert,
-      preamble: "Please answer the following questions on a scale from 1 to 7.",
-      questions: [
-        {
-          prompt: "How satisfied are you with your donation? (1 = Not satisfied at all, 7 = Very satisfied)",
-          name: 'Satisfaction', 
-          options: ['1', '2', '3', '4', '5', '6', '7'], 
-          required: true,
-          horizontal: true
-        },
-        {
-          prompt: "How often do you donate to charity? (1 = Never, 7 = Very often)", 
-          name: 'Frequency', 
-          options: ['1', '2', '3', '4', '5', '6', '7'], 
-          required: true,
-          horizontal: true
-        }
-      ]
-    };
+      prompt: "I am satisfied with my donation. (1 = not at all, 7 = very much)",
+      labels: ["1", "2", "3", "4", "5", "6", "7"],
+      required: true
+    },
+    {
+      prompt: "I usually donate to charity. (1 = not at all, 7 = very much)",
+      labels: ["1", "2", "3", "4", "5", "6", "7"],
+      required: true
+    }
+  ]
+};
 
     function validateDemographics(response) {
       const age = parseInt(response.age, 10);
