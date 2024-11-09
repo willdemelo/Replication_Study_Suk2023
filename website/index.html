@@ -40,6 +40,20 @@
       stimulus: "Welcome to our study! Press any key to begin.",
     };
 
+    // Introduction
+    var introduction = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <h2>Daily Routines and Lifestyle Survey</h2>
+          <p>Thank you for participating in this survey! We’re interested in understanding people’s daily routines, lifestyle preferences, and general habits. 
+          Your responses will help us get a sense of typical day-to-day activities and how people spend their free time. 
+          Please answer each question as accurately as possible based on your usual routines.</p>
+          <p>Press any key to begin.</p>
+        </div>
+      `
+    };
+
     // Define unrelated survey questions
     var unrelatedSurveyQuestions = [
       {
@@ -112,6 +126,7 @@
         ]
       },
       {
+        
         type: jsPsychSurveyMultiChoice,
         questions: [
           {
@@ -252,11 +267,95 @@
       `,
     };
 
-    var donationTrial = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Donation trial (not modified)."
-    };
+// Instructions
+var instructions = {
+   type:  jsPsychHtmlKeyboardResponse,
+   stimulus: `
+   <div class="wrap-text">
+      <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
+      <p>You can only donate a total that is equal to or less than 8 USD.</p>
+      <p>Press any key to continue.</p>
+    </div>
+   `
+ };
 
+ // Utility function to shuffle an array
+ function shuffleArray(array) {
+   for (let i = array.length - 1; i > 0; i--) {
+     const j = Math.floor(Math.random() * (i + 1));
+     [array[i], array[j]] = [array[j], array[i]];
+   }
+ }
+
+ // Custom donation input trial with sum validation, randomized order, and order recording
+ var donationTrial = {
+   type: jsPsychHtmlKeyboardResponse,
+   stimulus: function() {
+     // Define the HTML elements for the input fields and record labels, adding `min="0"` and spacing
+     let inputs = [
+       {html: `<div style="margin-bottom: 15px;"><label>For the cause ($):</label><input type="number" id="causeInput" min="0" required /></div>`, label: "For the cause ($)"},
+       {html: `<div style="margin-bottom: 15px;"><label>For covering charitable organizations’ operating expense ($):</label><input type="number" id="expenseInput" min="0" required /></div>`, label: "For covering charitable organizations’ operating expense ($)"}
+     ];
+     
+     // Shuffle the inputs
+     shuffleArray(inputs);
+
+     // Record the order of questions
+     window.questionOrder = inputs.map(input => input.label);  // Store order in a global variable
+
+     // Combine the shuffled inputs into one HTML string
+     return `
+       ${inputs.map(input => input.html).join('')}
+       <div id="sum-display" style="margin-top: 10px;">
+         <strong>Total Donation ($): </strong><span id="sum-value">0</span>
+       </div>
+       <div id="warning-message" style="color: red; margin-top: 5px; display: none;">
+         Total donation cannot exceed 8 US dollars, and only numerical values are allowed.
+       </div>
+       <button id="continueButton" disabled>Submit</button>
+     `;
+   },
+   choices: "NO_KEYS",
+   on_load: function() {
+     const causeInput = document.getElementById("causeInput");
+     const expenseInput = document.getElementById("expenseInput");
+     const sumDisplay = document.getElementById("sum-value");
+     const warningDiv = document.getElementById("warning-message");
+     const continueButton = document.getElementById("continueButton");
+
+     function updateSum() {
+       let value1 = parseFloat(causeInput.value) || 0;
+       let value2 = parseFloat(expenseInput.value) || 0;
+       let sum = value1 + value2;
+       sumDisplay.innerText = sum.toFixed(2);
+
+       // Check for invalid inputs: sum exceeding 8, negative values, or incomplete fields
+       if (sum > 8 || value1 < 0 || value2 < 0) {
+        warningDiv.style.display = "block";
+        continueButton.disabled = true;
+      } else if (causeInput.value && expenseInput.value && value1 >= 0 && value2 >= 0) {
+        warningDiv.style.display = "none";
+        continueButton.disabled = false;
+      } else {
+        continueButton.disabled = true;
+      }
+    }
+
+     causeInput.addEventListener("input", updateSum);
+     expenseInput.addEventListener("input", updateSum);
+
+     continueButton.addEventListener("click", () => {
+       jsPsych.finishTrial({
+         causeDonation: parseFloat(causeInput.value) || 0,
+         expenseDonation: parseFloat(expenseInput.value) || 0,
+         totalDonation: parseFloat(sumDisplay.innerText) || 0,
+         questionOrder: window.questionOrder  // Store question order in trial data
+       });
+     });
+   }
+ };
+
+ // Satisfaction survey
     var satisfaction = {
       type: jsPsychSurveyMultiChoice,
       preamble: "Please answer the following questions on a scale from 1 to 7.",
@@ -278,14 +377,33 @@
       ]
     };
 
+    function validateDemographics(response) {
+      const age = parseInt(response.age, 10);
+      const nationality = response.nationality;
+
+      // Validate age: must be a number between 1 and 120
+      if (!Number.isInteger(age) || age < 1 || age > 120) {
+        alert("Please enter a valid age between 1 and 120.");
+        return false;
+      }
+
+      // Validate nationality: must only contain letters
+      const nationalityRegex = /^[A-Za-z\s]+$/;
+      if (!nationalityRegex.test(nationality)) {
+        alert("Please enter a valid nationality using only letters.");
+        return false;
+      }
+
+      return true;
+    }
+    
     var demographics = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: "Please enter your age (whole number only):", name: 'age', required: true},
-        {prompt: "Please enter your nationality:", name: 'nationality', required: true}
+        {prompt: "Please enter your age (whole number only):", name: 'age', required: true, placeholder: "e.g., 25"},
+        {prompt: "Please enter your nationality:", name: 'nationality', required: true, placeholder: "e.g., American"}
       ]
     };
-
     var gender = {
       type: jsPsychSurveyMultiChoice,
       questions: [
@@ -326,6 +444,7 @@
 
     // Add trials to the timeline
     timeline.push(welcome);
+    timeline.push(introduction);
     timeline.push(...unrelatedSurveyQuestions);
     timeline.push(prizeExplanationAndCheck, overheadInformationAndCheck, charityDescription);
     timeline.push(instructions);
