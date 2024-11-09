@@ -340,7 +340,7 @@
             label: "For covering charitable organizations’ operating expense ($)"
         }
         ];
-        
+
         // Shuffle the inputs
         shuffleArray(inputs);
 
@@ -357,7 +357,9 @@
         <div id="warning-message" style="color: red; margin-top: 5px; display: none;">
             Total donation cannot exceed 8 US dollars, and only positive numbers are allowed.
         </div>
-        <button id="continueButton" disabled>Submit</button>
+        <div style="text-align: center; margin-top: 15px;">
+            <button id="continueButton" disabled style="padding: 10px 20px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: transparent; color: black; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">Continue</button>
+        </div>
         `;
     },
     choices: "NO_KEYS",
@@ -390,16 +392,16 @@
         causeInput.addEventListener("input", updateSum);
         expenseInput.addEventListener("input", updateSum);
 
-        // Finish the trial and store the data when the submit button is clicked
+        // Finish the trial and store the data when the continue button is clicked
         continueButton.addEventListener("click", () => {
         jsPsych.finishTrial({
             causeDonation: parseFloat(causeInput.value) || 0,
             expenseDonation: parseFloat(expenseInput.value) || 0,
             totalDonation: parseFloat(sumDisplay.innerText) || 0,
             questionOrder: window.questionOrder  // Store question order in trial data
+          });
         });
-        });
-    }
+      }
     };
 
     // Satisfaction survey
@@ -440,12 +442,53 @@
     }
     
     var demographics = {
-      type: jsPsychSurveyText,
-      questions: [
-        {prompt: "Please enter your age (whole number only):", name: 'age', required: true, placeholder: "e.g., 25"},
-        {prompt: "Please enter your nationality:", name: 'nationality', required: true, placeholder: "e.g., American"}
-      ]
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+        <div style="text-align: left; max-width: 400px; margin: auto;">
+        <label for="age" style="font-size: 18px; display: block; margin-bottom: 5px;">Please enter your age (whole number only):</label>
+        <input type="text" id="age" name="age" required placeholder="e.g., 25" 
+            style="width: 100%; padding: 8px; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+        
+        <label for="nationality" style="font-size: 18px; display: block; margin-bottom: 5px;">Please enter your nationality:</label>
+        <input type="text" id="nationality" name="nationality" required placeholder="e.g., American" 
+            style="width: 100%; padding: 8px; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+        
+        <div style="text-align: center;">
+            <button id="submit-btn" style="padding: 10px 20px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: transparent; color: black; cursor: pointer;">Continue</button>
+        </div>
+        </div>
+    `,
+    choices: "NO_KEYS",  // Disable keyboard choices to let the form handle input
+    on_load: function() {
+        // Restrict age input to numbers only
+        document.querySelector("#age").addEventListener("input", function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        });
+        
+        // Restrict nationality input to letters only
+        document.querySelector("#nationality").addEventListener("input", function() {
+        this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        });
+
+        // Submit button functionality
+        document.querySelector("#submit-btn").addEventListener("click", function(event) {
+        event.preventDefault();  // Prevent default form submission
+        
+        // Collect the values
+        const age = document.querySelector("#age").value;
+        const nationality = document.querySelector("#nationality").value;
+
+        // If both fields are filled out, finish the trial
+        if (age && nationality) {
+            jsPsych.finishTrial({
+            age: age,
+            nationality: nationality
+            });
+          }
+        });
+      }
     };
+    
     var gender = {
       type: jsPsychSurveyMultiChoice,
       questions: [
