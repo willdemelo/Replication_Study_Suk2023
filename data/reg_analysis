@@ -25,7 +25,7 @@ pilot_A_data_204$gender <- as.factor(pilot_A_data_204$gender)
 # Perform regression analysis
 # Exclude irrelevant columns like 'file_id' and 'comment' from predictors
 # Need help with nationality
-model <- lm(total ~ ., data = pilot_A_data_204 %>% select(-file_id, -comment, -nationality, -check1, -check2))
+model <- lm(total ~ ., data = pilot_A_data_204 %>% select(-file_id, -comment, -check1, -check2))
 
 
 # Summarize regression results
