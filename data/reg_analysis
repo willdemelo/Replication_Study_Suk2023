@@ -1,0 +1,33 @@
+library(tidyverse)
+library(broom)
+library(jsonlite)
+
+pilot_A_data_204 <- read.csv("/Users/nina/Downloads/testpilotdata.csv")
+
+str(pilot_A_data_204)
+summary(pilot_A_data_204)
+colnames(pilot_A_data_204)
+
+# Remove participants who fail comprehension checks?
+
+# Data cleaning
+pilot_A_data_204$gender <- sapply(pilot_A_data_204$gender, function(x) fromJSON(x)$gender) # Parse gender data
+pilot_A_data_204$condition <- gsub("\\[|\\]|\"", "", pilot_A_data_204$condition) # Remove brackets and quotes
+pilot_A_data_204$condition <- as.factor(pilot_A_data_204$condition)
+pilot_A_data_204$gender <- as.factor(pilot_A_data_204$gender)
+pilot_A_data_204$nationality <- as.factor(pilot_A_data_204$nationality)
+
+# Convert relevant columns to factors
+pilot_A_data_204$condition <- as.factor(pilot_A_data_204$condition)
+pilot_A_data_204$gender <- as.factor(pilot_A_data_204$gender)
+
+
+# Perform regression analysis
+# Exclude irrelevant columns like 'file_id' and 'comment' from predictors
+# Need help with nationality
+model <- lm(total ~ ., data = pilot_A_data_204 %>% select(-file_id, -comment, -nationality, -check1, -check2))
+
+
+# Summarize regression results
+summary(model)
+plot(model)
