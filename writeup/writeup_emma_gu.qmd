@@ -24,7 +24,9 @@ One challenge will be designing the donation collection screens in a way that mi
 
 ### Power Analysis
 
-Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size. Considerations of feasibility for selecting planned sample size.
+To determine the required sample size for adequate statistical power in our study, we conducted an a priori power analysis using G\*Power software. Our goal was to detect an effect size (Cohen’s d) of 0.4126397, which was calculated based on the results of total donation amount in the original study. This effect size reflects a moderate difference between two independent groups.
+
+We set the power at 80% (0.8), meaning there is an 80% probability of correctly rejecting the null hypothesis if a true effect exists. Additionally, we used a standard alpha level of 0.05 to control the Type I error rate. The analysis indicated that, to achieve 80% power, we would need a total sample size of 188 participants, with 94 participants per group.
 
 ### Planned Sample
 
@@ -90,11 +92,15 @@ The target sample size for this study is approximately 140 participants, with ar
 
 -   **Sample and Setting**:
 
-    -   The sample will be recruited in the same way as in the original study, via an online panel, but may not include an initial unrelated survey prior to participation in the donation study. This omission is due to practical constraints and aims to streamline recruitment and participation. The sample will not be restricted to UK.
+    -   The sample will be recruited through an online panel, following the same method as the original study. However, the unrelated survey administered prior to the donation study will differ from the original due to the unavailability of the original materials from the authors. Additionally, the sample will be recruited from USA rather than UK.
 
 -   **Instructions**:
 
     -   The original study’s instructions will be used verbatim where possible. Otherwise, a closely aligned set of instructions will be developed that preserves the intent and detail of the original materials.
+
+### Experimental Paradigm
+
+<https://ucsd-psych201a.github.io/suk2023/website/>
 
 ### Methods Addendum (Post Data Collection)
 
@@ -108,27 +114,179 @@ Sample size, demographics, data exclusions based on rules spelled out in analysi
 
 Any differences from what was described as the original plan, or “none”.
 
+## Design Overview
+
+The original study utilized a between-participants design, with one manipulated factor and three distinct measures. Measures were not repeated, and each participant was exposed to only one experimental condition. A between-participants design was likely chosen to avoid any potential awkwardness or perceived redundancy that could arise from donating to the same charity multiple times, which might also reveal the experimental purpose to participants. This decision aligns well with the study’s objective, as a within-participants design may have increased the risk of participants discerning the treatment and thus responding differently.
+
+To minimize demand characteristics, an unrelated survey was administered prior to the donation task, which helped to distract participants and potentially reduced any preconceived expectations about the study’s purpose. This approach likely maintained the integrity of responses by focusing participants’ attention elsewhere before the key donation ask.
+
+One critique of the study’s design is that including an unrelated survey could introduce unintended influences on participant behavior, potentially acting as a confound. For instance, the content or tone of the survey might subtly impact their mindset when making donation decisions. Additionally, the order in which each type of donation (i.e., cause vs. overhead costs) was explained could also act as a confounding factor, possibly affecting participants’ understanding or perception of each donation type (e.g., through recency effect).
+
+A few factors limit the generalizability of the study’s findings. Notably, only 20% of participants received actual payment, which may have influenced how participants perceived and engaged with the donation task, knowing they were not guaranteed real funds to donate. Moreover, donations were made using money provided by the experimenters rather than participants’ own money. This setup may not accurately capture genuine donation behavior, as participants may behave differently when donating from personal funds. These factors suggest that the results might be specific to the experimental context and may not fully generalize to real-world donation scenarios.
+
 ## Results
 
 ### Data preparation
 
 Data will be collected through jsPsych. Various packages will be needed for reading and analyzing .csv data, as well as conducting regression analyses and t-tests. Based on participants' comprehension check responses, we will filter results to include only those who passed. The dataset will include the following columns: Participant ID, Condition, Demographics (Age, Gender, Nationality), Amount Donated to Overhead, Amount Donated to Cause, Total Donation Amount, Donation Satisfaction, and Donation Status (indicating if the participant was among the 20% selected to win and/or donate additional compensation).
 
-```{r include=F}
-### Data Preparation
+```{r}
+## Necessary Packages
+library(jsonlite)
+library(tidyverse)
+library(knitr)
 
-#### Load Relevant Libraries and Functions
+# ## Data Processing Function
+# process_csv_files <- function(file_paths, output_file) {
+#   
+#   process_file <- function(file_path) {
+#     # Reads file
+#     testdata <- tryCatch(read_csv(file_path), error = function(e) return(NULL))
+#     if (is.null(testdata)) return(NULL)
+#     
+#     # Shortens file to specified columns
+#     if(!all(c("causeDonation", "expenseDonation", "totalDonation", "questionOrder", "age", "nationality") %in% colnames(testdata))){
+#       message(paste("Skipping file:", file_path, "- missing expected columns"))
+#       return(NULL)
+#     }
+#     tdcols <- subset(testdata, select = -c(rt, stimulus, trial_type, plugin_version, question_order))
+#     
+#     # Shortens file to specified rows
+#     tdrows <- tdcols[-c(1:13, 16:17), , drop = FALSE]
+#     
+#     # Rearranges elements of cleaned data into one cohesive row
+#     tdarrange <- data.frame(
+#       check1 = tdrows$response[1],
+#       check2 = tdrows$response[2],
+#       cause = tdrows$causeDonation[3],
+#       overhead = tdrows$expenseDonation[3],
+#       total = tdrows$totalDonation[3],
+#       condition = tdrows$questionOrder[3],
+#       satis_usual = tdrows$response[4],
+#       age = tdrows$age[5],
+#       nationality = tdrows$nationality[5],
+#       gender = tdrows$response[6],
+#       comment = tdrows$response[7]
+#     )
+#     
+#     # Parses the Satisfaction responses, unnests JSON formatting
+#     tdparsed <- tdarrange %>%
+#       mutate(satis_usual = lapply(satis_usual, function(x) {
+#         tryCatch(fromJSON(x), error = function(e) NA)
+#       }))
+#     
+#     # Unnests the Satisfaction/Frequency column into two separate columns
+#     tdsep <- tdparsed %>%
+#       unnest_wider(col = satis_usual, names_sep = "_")
+#     
+#     # Renames columns
+#     tdclean <- tdsep %>% 
+#       rename(Satisfaction = satis_usual_Q0,
+#              Frequency = satis_usual_Q1)
+#     
+#     return(tdclean)
+#   }
+#   
+#   processed_files <- lapply(file_paths, process_file)
+#   all_data <- bind_rows(processed_files, .id = "file_id")
+#   
+#   # Saves the combined data
+#   write_csv(all_data, output_file)
+#   
+#   return(all_data)
+# }
+# 
+# file_paths <- c(
+#   "XXX.csv",
+#   # list continues
+# )
+# 
+# output_file <- "testpilotdata.csv"
+# result <- process_csv_files(file_paths, output_file)
+# 
+# ## Clean JSON formatting and special characters
+# remove_special_characters <- function(entry) {
+#   gsub("[^a-zA-Z0-9\\s]", "", entry)
+# }
+# 
+# cleanresult <- result %>%
+#   mutate(across(c(check1, check2, condition, gender, comment), ~sapply(.x, remove_special_characters))) %>%
+#   mutate(
+#     condition = recode(
+#       condition,
+#       ForthecauseForcoveringcharitableorganizationsoperatingexpense = 'causefirst',
+#       ForcoveringcharitableorganizationsoperatingexpenseForthecause = 'overfirst'
+#     ),
+#     check1 = gsub("chanceresponse", "", check1),
+#     check2 = gsub("donationuseresponse", "", check2),
+#     gender = gsub("gender", "", gender),
+#     comment = gsub("Q0", "", comment)
+#   )
+# 
+# ## Produces .csv file 
+# write.csv(cleanresult, "cleantestdata.csv", row.names = FALSE)
 
-#### Import data
+## Read .csv file (start here if data cleaning is already finished)
+cleanresult <- read.csv("cleantestdata.csv")
 
-#### Data exclusion / filtering
+## Descriptive Statistics
 
-#### Prepare data for analysis - create columns etc.
+# Summary statistics for numerical variables
+numerical_summary <- cleanresult %>%
+  group_by(condition) %>% 
+  summarise(
+    n = n(),
+    mean_total_donation = mean(total, na.rm = TRUE),
+    sd_total_donation = sd(total, na.rm = TRUE),
+    mean_Satisfaction = mean(Satisfaction, na.rm = TRUE),
+    sd_Satisfaction = sd(Satisfaction, na.rm = TRUE),
+    mean_Frequency = mean(Frequency, na.rm = TRUE),
+    sd_Frequency = sd(Frequency, na.rm = TRUE),
+    mean_age = mean(age, na.rm = TRUE),
+    sd_age = sd(age, na.rm = TRUE)
+  ) 
+numerical_summary %>% 
+  kable()
+
+## Analyses
+donation_model <- lm(total ~ condition + Frequency + age + factor(gender), data = cleanresult)
+summary(donation_model)
+
+## Cohen's d Calculation
+# Function to calculate Cohen's d
+calculate_cohens_d <- function(data, group_var, outcome_var) {
+  # Separate the data by groups
+  group1 <- data %>% filter(!!sym(group_var) == "causefirst") %>% pull(!!sym(outcome_var))
+  group2 <- data %>% filter(!!sym(group_var) == "overfirst") %>% pull(!!sym(outcome_var))
+  
+  # Calculate means and standard deviations for each group
+  mean1 <- mean(group1, na.rm = TRUE)
+  mean2 <- mean(group2, na.rm = TRUE)
+  sd1 <- sd(group1, na.rm = TRUE)
+  sd2 <- sd(group2, na.rm = TRUE)
+  
+  # Calculate pooled standard deviation
+  n1 <- length(group1)
+  n2 <- length(group2)
+  pooled_sd <- sqrt(((n1 - 1) * sd1^2 + (n2 - 1) * sd2^2) / (n1 + n2 - 2))
+  
+  # Calculate Cohen's d
+  cohens_d <- (mean1 - mean2) / pooled_sd
+  return(cohens_d)
+}
+
+# Calculate Cohen's d for the effect of condition on total donations
+cohens_d <- calculate_cohens_d(cleanresult, "condition", "total")
+print(paste("Cohen's d for the effect of condition on total donations:", round(cohens_d, 3)))
+
+
 ```
 
 ### Confirmatory analysis
 
-1.  **Total Donation Amount**: A **regression analysis** will test if the donation collection method (cause-first vs. overhead-first) influences total donation amount, with age and gender as covariates, replicating the original finding that overhead-first leads to higher donations.
+1.  **Total Donation Amount**
+
+    The regression analysis examined the effects of condition, frequency, age, and gender, on total donations. The coefficient for `condition` (`overfirst` vs. `causefirst`) was marginally significant (p = 0.0543), suggesting that participants in the `overfirst` condition donated less on average compared to those in the `causefirst` condition. The analysis showed no significant effects of `frequency`, `age`, or most gender categories on donation amounts. The model explained a substantial proportion of the variance in total donations (R² = 0.8531), although the adjusted R² (0.6327) suggests that model fit may vary depending on the sample. Additionally, Cohen's d was calculated to assess the effect size of `condition` on total donations, yielding a moderate effect size of 0.645, indicating that the condition had a meaningful impact on donation behavior, although in an opposite direction compared to the original study.
 
 2.  **Donation Allocation**: Separate **regression analyses** will assess differences in amounts allocated to cause and overhead, confirming if the overhead-first method increases donations to both categories.
 
