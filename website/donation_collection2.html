@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <!-- Load jsPsych and plugins -->
+   <title>rt experiment</title>
+   <script src="https://unpkg.com/jspsych@8.0.0"></script>
+   <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+   <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />   
+   <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+ </head>
+ <body> </body>
+ <script>
+ var jsPsych = initJsPsych({
+   on_finish: function () {
+     jsPsych.data.displayData();
+   }
+ });
+
+ var timeline = [];
+
+ // Welcome message
+ var welcome = {
+   type: jsPsychHtmlKeyboardResponse,
+   stimulus: "Welcome to the experiment. Press any key to begin."
+ };
+
+// Define the survey questions section
+var unrelatedSurveyQuestions = [
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "On average, how many hours of sleep do you get per night?",
+        options: ["More than 10 hours", "9-10 hours", "7-8 hours", "5-6 hours", "4 hours or less"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-text",
+    questions: [
+      {
+        prompt: "In one sentence, describe your favorite hobby.",
+        placeholder: "Type your answer here",
+        rows: 2,
+        columns: 50,
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "On average, how much time do you spend on this hobby daily?",
+        options: ["More than 2 hours", "90-120 minutes", "60-90 minutes", "30-60 minutes", "Less than 30 minutes"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-likert",
+    questions: [
+      {
+        prompt: "How often during the day do you wish you had more time for this hobby?",
+        labels: ["Not at all", "Rarely", "Sometimes", "Often", "Always"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "What is your preferred way to unwind after a busy day?",
+        options: ["Watching TV or movies", "Reading", "Physical exercise (e.g., jogging, gym)", "Socializing with friends/family", "Other (please specify)"],
+        required: true
+      }
+    ],
+    data: { is_optional: true }
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "How many hours per day do you typically spend on social media?",
+        options: ["Less than 1 hour", "1-2 hours", "3-4 hours", "More than 4 hours"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "How often do you shop online?",
+        options: ["Rarely", "Once a month", "Weekly", "Multiple times a week"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "Where do you prefer to spend your free time?",
+        options: ["Mostly indoors", "Mostly outdoors", "Both equally"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-likert",
+    questions: [
+      {
+        prompt: "How would you rate the typical stress level of your weekdays?",
+        labels: ["Not stressful", "Slightly stressful", "Moderately stressful", "Very stressful", "Extremely stressful"],
+        required: true
+      }
+    ]
+  },
+  {
+    type: "survey-multi-choice",
+    questions: [
+      {
+        prompt: "How frequently do you feel productive during the day?",
+        options: ["Rarely", "Occasionally", "Most days", "Almost every day"],
+        required: true
+      }
+    ]
+  }
+];
+  
+ // Instructions
+ var instructions = {
+   type: jsPsychHtmlKeyboardResponse,
+   stimulus: `
+      <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
+      <p>You can only donate a total that is equal to or less than 8 US dollars.</p>
+      <p>Press any key to begin.</p>
+   `
+ };
+
+ // Utility function to shuffle an array
+ function shuffleArray(array) {
+   for (let i = array.length - 1; i > 0; i--) {
+     const j = Math.floor(Math.random() * (i + 1));
+     [array[i], array[j]] = [array[j], array[i]];
+   }
+ }
+
+ // Define questions and shuffle their order
+ let questions = [
+   {prompt: 'For the cause ($):', required: true},
+   {prompt: 'For covering charitable organizations’ operating expense ($):', required: true}
+ ];
+
+ // Shuffle questions
+ shuffleArray(questions);
+
+ // Record order of questions
+ let questionOrder = questions.map(q => q.prompt);
+
+ // Cause input trial with randomized questions and sum display
+var trial = {
+  type: jsPsychSurveyText,
+  questions: questions,
+  data: {questionOrder: questionOrder},
+  on_load: function() {
+    // Create elements to show the sum and warning message
+    let sumDiv = document.createElement("div");
+    sumDiv.id = "sum-display";
+    sumDiv.style.marginTop = "10px";
+    sumDiv.innerHTML = "<strong>Total Donation ($): </strong><span id='sum-value'>0</span>";
+    document.querySelector(".jspsych-content").appendChild(sumDiv);
+
+    let warningDiv = document.createElement("div");
+    warningDiv.id = "warning-message";
+    warningDiv.style.color = "red";
+    warningDiv.style.marginTop = "5px";
+    warningDiv.style.display = "none";
+    warningDiv.innerText = "Total donation cannot exceed 8 US dollars and only numerical values are allowed.";
+    document.querySelector(".jspsych-content").appendChild(warningDiv);
+
+    // Reference to the Continue button
+    const continueButton = document.querySelector("button.jspsych-btn");
+
+    // Function to update the sum and validate input
+    function updateSum() {
+      let inputs = document.querySelectorAll(".jspsych-survey-text-question input");
+      let value1 = parseFloat(inputs[0].value) || 0;
+      let value2 = parseFloat(inputs[1].value) || 0;
+      let sum = value1 + value2;
+      document.getElementById("sum-value").innerText = sum.toFixed(2); // Display sum with two decimals
+
+      // Validate sum
+      if (sum > 8) {
+        warningDiv.style.display = "block";  // Show warning message
+        continueButton.disabled = true;      // Disable submit button
+      } else {
+        warningDiv.style.display = "none";   // Hide warning message
+        continueButton.disabled = false;     // Enable submit button
+      }
+    }
+
+    // Add event listeners to restrict input to numeric and enforce max of 8 dollars
+    document.querySelectorAll(".jspsych-survey-text-question input").forEach(input => {
+      input.addEventListener("input", (e) => {
+        let value = e.target.value;
+
+        // Allow only numbers and up to 8
+        if (!/^\d*\.?\d*$/.test(value) || parseFloat(value) > 8) {
+          e.target.value = value.slice(0, -1); // Remove last entered character if invalid
+        } else {
+          updateSum(); // Only update sum if input is valid
+        }
+      });
+    });
+  }
+};
+
+ // Satisfaction survey
+ var satisfaction = {
+   type: jsPsychSurveyMultiChoice,
+   preamble: "Please answer the following questions on a scale from 1 to 7.",
+   questions: [
+     {
+       prompt: "How satisfied are you with your donation? (1 = Not Satisfied, 7 = Very Satisfied)",
+       name: 'Satisfaction', 
+       options: ['1', '2', '3', '4', '5', '6', '7'], 
+       required: true,
+       horizontal: true
+     },
+    {
+       prompt: "How often do you donate to charity? (1 = Never, 7 = Very Often)", 
+       name: 'Frequency', 
+       options: ['1', '2', '3', '4', '5', '6', '7'], 
+       required: true,
+       horizontal: true
+     }
+   ]
+ };
+ 
+ var demographics = {
+   type: jsPsychSurveyText,
+   questions: [
+     {prompt: "Please enter your age:", name: 'age', required: true},
+     {prompt: "Please enter your nationality:", name: 'nationality', required: true}
+   ]
+ };
+
+ var gender = {
+   type: jsPsychSurveyMultiChoice,
+   questions: [
+     {
+       prompt: "Please select your gender:",
+       name: 'gender',
+       options: ['Male', 'Female', 'Non-binary', 'Prefer not to say', 'Other'],
+       required: true,
+       horizontal: true
+     }
+   ]
+ };
+
+ // Add trials to the timeline
+ timeline.push(welcome);
+ timeline.push(instructions);
+ timeline.push(trial);
+ timeline.push(satisfaction);
+ timeline.push(demographics);
+ timeline.push(gender);
+
+ // Run the experiment
+ jsPsych.run(timeline);
+
+ </script>
+</html>

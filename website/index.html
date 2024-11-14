@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RT Experiment</title>
+    <!-- Load jsPsych and plugins -->
+    <script src="https://unpkg.com/jspsych@8.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+    <link href="https://unpkg.com/jspsych@8.0.0/css/jspsych.css" rel="stylesheet" />
+    <style>
+      /* Global style for text wrapping */
+      .wrap-text {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.5;
+        white-space: normal;
+        text-align: left;
+      }
+      /* Remove arrows on number input fields across browsers */
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        margin: 0; 
+      }
+      input[type=number] {
+        -moz-appearance: textfield; /* Firefox */
+        appearance: textfield;
+      }
+    </style>
+  </head>
+  <body></body>
+  <script>
+    var jsPsych = initJsPsych({
+      on_finish: function () {
+        jsPsych.data.displayData();
+      },
+    });
+
+    const subject_id = jsPsych.randomization.randomID(10);
+    const filename = `${subject_id}.csv`;
+
+    var timeline = [];
+
+    // Welcome message
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "Welcome to our study! Press any key to begin.",
+    };
+
+    var consent = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text" style="max-height: 400px; overflow-y: auto; padding: 20px; border: 1px solid #ccc; line-height: 1.5;">
+          <h2>Consent Form</h2>
+          <p>You are being invited to participate in a research study titled “Reproducibility of Psychological Science and Instruction.” This study is being done by Dr. Bria Long from UC San Diego and associated graduate students in the Experimental Methods course. You were selected to participate in this study because you are an adult in the U.S. and have been a represented population in previous psychology studies.</p>
+          
+          <p>The purpose of this study is to better understand how well previously published studies in the psychological field replicate online and with different populations. Your participation in this research should last approximately 5-30 minutes. If you agree to take part in this study, you may be asked to view a set of stimuli, including pictures, sounds, written text, or videos, and then give responses via key presses, verbally, or with paper-and-pencil. We may also observe your choices or preferences among an array of stimuli. These stimuli will be taken directly from or closely adapted from studies that already exist in the published psychological literature. Stimuli will include, e.g., pictures of objects and human faces, audio and video clips, short text passages, etc. None of the stimuli will be disturbing, threatening, or offensive. The online and in-person experiments described in this protocol will take no more than 30 minutes. An example game you might play would be to click on an image on the screen that matches a word you hear being said out loud. Your total expected time commitment for this study is between 5-30 minutes, as specified in the study description.</p>
+    
+          <p>Your participation in this study is completely voluntary, and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled. You are free to skip any question that you choose.</p>
+    
+          <p>We will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g., Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.</p>
+    
+          <p>If you have questions about this project or if you have a research-related problem, you may contact the researcher(s), Dr. Bria Long, at <a href="mailto:brlong@ucsd.edu">brlong@ucsd.edu</a>. If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at <a href="mailto:irb@ucsd.edu">irb@ucsd.edu</a> or 858-246-4777.</p>
+    
+          <p>By participating in this research, you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p>
+    
+          <p><strong>Press any key to continue.</strong></p>
+        </div>
+      `,
+    };
+    // Introduction
+    var introduction = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <h2>Daily Routines and Lifestyle Survey</h2>
+          <p>Thank you for participating in this survey! We’re interested in understanding people’s daily routines, lifestyle preferences, and general habits. 
+          Your responses will help us get a sense of typical day-to-day activities and how people spend their free time. 
+          Please answer each question as accurately as possible based on your usual routines.</p>
+          <p>Press any key to begin.</p>
+        </div>
+      `
+    };
+
+    // Define unrelated survey questions
+    var unrelatedSurveyQuestions = [
+      {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "On average, how many hours of sleep do you get per night?",
+            options: [
+              "More than 10 hours",
+              "9-10 hours",
+              "7-8 hours",
+              "5-6 hours",
+              "4 hours or less"
+            ],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyText,
+        questions: [
+          {
+            prompt: "In one sentence, describe your favorite hobby.",
+            placeholder: "Type your answer here",
+            rows: 2,
+            columns: 50,
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "On average, how much time do you spend on this hobby daily?",
+            options: [
+              "More than 2 hours",
+              "90-120 minutes",
+              "60-90 minutes",
+              "30-60 minutes",
+              "Less than 30 minutes"
+            ],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyLikert,
+        questions: [
+          {
+            prompt: "How often during the day do you wish you had more time for this hobby?",
+            labels: ["Not at all", "Rarely", "Sometimes", "Often", "Always"],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "Of these four options, what is your preferred way to unwind after a busy day?",
+            options: [
+              "Watching TV or movies",
+              "Reading",
+              "Physical exercise (e.g., jogging, gym)",
+              "Socializing with friends/family"
+            ],
+            required: true,
+          }
+        ]
+      },
+      {
+        
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "How many hours per day do you typically spend on social media?",
+            options: [
+              "Less than 1 hour",
+              "1-2 hours",
+              "3-4 hours",
+              "More than 4 hours"
+            ],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "How often do you shop online?",
+            options: [
+              "Rarely",
+              "Once a month",
+              "Weekly",
+              "Multiple times a week"
+            ],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "Where do you prefer to spend your free time?",
+            options: [
+              "Mostly indoors",
+              "Mostly outdoors",
+              "Both equally"
+            ],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyLikert,
+        questions: [
+          {
+            prompt: "How would you rate the typical stress level of your weekdays?",
+            labels: [
+              "Not stressful",
+              "Slightly stressful",
+              "Moderately stressful",
+              "Very stressful",
+              "Extremely stressful"
+            ],
+            required: true
+          }
+        ]
+      },
+      {
+        type: jsPsychSurveyMultiChoice,
+        questions: [
+          {
+            prompt: "How frequently do you feel productive during the day?",
+            options: [
+              "Rarely",
+              "Occasionally",
+              "Most days",
+              "Almost every day"
+            ],
+            required: true
+          }
+        ]
+      }
+    ];
+
+    var prizeExplanationAndCheck = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: `
+        <div class="wrap-text">
+          <p>Thank you for completing the survey on your lifestyle.</p>
+          <p>Please note 20% of participants will be randomly selected to receive an additional 8 USD as a bonus prize. 
+          If you are selected, you will have the option to donate some or all of this bonus to a charitable cause, 
+          or to keep the full amount. This selection is completely random, and everyone has an equal chance of winning the bonus prize.</p>
+        </div>
+      `,
+      questions: [
+        {
+          prompt: "What is the chance you will receive an additional 8 USD with the option to donate?",
+          name: 'chance_response',
+          options: ["50%", "20%", "10%"],
+          required: true
+        }
+      ]
+    };
+
+    var overheadInformationAndCheck = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: `
+        <div class="wrap-text">
+          <p>Charitable organizations use donated money in two ways: (1) helping the cause and (2) covering the organization’s operations (i.e., overhead costs). 
+          Some charities separate donations for the cause and for overhead expenses.</p>
+        </div>
+      `,
+      questions: [
+        {
+          prompt: "How do charities use their donations?",
+          name: 'donation_use_response',
+          options: [
+            "To support an advertised cause", 
+            "To maintain their necessary expenses", 
+            "All of the above", 
+            "None of the above"
+          ],
+          required: true
+        }
+      ]
+    };
+
+    var charityDescription = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <p>Today, you’ll have the opportunity to support a campaign aiding children born with disabilities in Asia, run by a trustworthy charity.</p>
+          <p>Press any key to continue.</p>
+        </div>
+      `,
+    };
+
+    var instructions = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
+          <p>You can only donate a total that is equal to or less than 8 USD.</p>
+          <p>Press any key to continue.</p>
+        </div>
+      `,
+    };
+
+
+    // Utility function to shuffle an array
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
+
+    // Custom donation input trial with sum validation, randomized order, and order recording
+    var donationTrial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: function() {
+        // Preamble message
+        const preamble = `
+        <div style="margin-bottom: 20px; font-weight: bold;">
+            <p>Remember, you can donate as little or as much as you want, as long as the total does not exceed 8 USD.</p> 
+            <p>Any amount not donated will be awarded to you as a prize if you win.</p>
+        </div>
+        `;
+
+        // Define the HTML elements for the input fields and record labels, adding `min="0"` and spacing
+        let inputs = [
+        {
+            html: `
+            <div style="margin-bottom: 15px;">
+                <label>For the cause ($): </label>
+                <input type="number" id="causeInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
+            </div>
+            `,
+            label: "For the cause ($)"
+        },
+        {
+            html: `
+            <div style="margin-bottom: 15px;">
+                <label>For covering charitable organizations’ operating expense ($): </label>
+                <input type="number" id="expenseInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
+            </div>
+            `,
+            label: "For covering charitable organizations’ operating expense ($)"
+        }
+        ];
+
+        // Shuffle the inputs
+        shuffleArray(inputs);
+
+        // Record the order of questions
+        window.questionOrder = inputs.map(input => input.label);  // Store order in a global variable
+
+        // Combine the preamble and shuffled inputs into one HTML string
+        return `
+        ${preamble}
+        ${inputs.map(input => input.html).join('')}
+        <div id="sum-display" style="margin-top: 10px;">
+            <strong>Total Donation ($): </strong><span id="sum-value">0</span>
+        </div>
+        <div id="warning-message" style="color: red; margin-top: 5px; display: none;">
+            Total donation cannot exceed 8 US dollars, and only positive numbers are allowed.
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button id="continueButton" disabled style="padding: 10px 20px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: transparent; color: black; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">Continue</button>
+        </div>
+        `;
+    },
+    choices: "NO_KEYS",
+    on_load: function() {
+        const causeInput = document.getElementById("causeInput");
+        const expenseInput = document.getElementById("expenseInput");
+        const sumDisplay = document.getElementById("sum-value");
+        const warningDiv = document.getElementById("warning-message");
+        const continueButton = document.getElementById("continueButton");
+
+        function updateSum() {
+        let value1 = parseFloat(causeInput.value) || 0;
+        let value2 = parseFloat(expenseInput.value) || 0;
+        let sum = value1 + value2;
+        sumDisplay.innerText = sum.toFixed(2);
+
+        // Check for invalid inputs: sum exceeding 8, negative values, or incomplete fields
+        if (sum > 8 || value1 < 0 || value2 < 0) {
+            warningDiv.style.display = "block";
+            continueButton.disabled = true;
+        } else if (causeInput.value && expenseInput.value && value1 >= 0 && value2 >= 0) {
+            warningDiv.style.display = "none";
+            continueButton.disabled = false;
+        } else {
+            continueButton.disabled = true;
+        }
+        }
+
+        // Add event listeners to the input fields to update the sum in real-time
+        causeInput.addEventListener("input", updateSum);
+        expenseInput.addEventListener("input", updateSum);
+
+        // Finish the trial and store the data when the continue button is clicked
+        continueButton.addEventListener("click", () => {
+        jsPsych.finishTrial({
+            causeDonation: parseFloat(causeInput.value) || 0,
+            expenseDonation: parseFloat(expenseInput.value) || 0,
+            totalDonation: parseFloat(sumDisplay.innerText) || 0,
+            questionOrder: window.questionOrder  // Store question order in trial data
+          });
+        });
+      }
+    };
+
+    // Satisfaction survey
+    var satisfaction = {
+      type: jsPsychSurveyLikert,
+      questions: [
+        {
+          prompt: "Please indicate your agreement with the following questions. <br> I am satisfied with my donation. (1 = not at all, 7 = very much)",
+          labels: ["1", "2", "3", "4", "5", "6", "7"],
+          required: true
+        },
+        {
+          prompt: "I usually donate to charity. (1 = not at all, 7 = very much)",
+          labels: ["1", "2", "3", "4", "5", "6", "7"],
+          required: true
+        }
+      ]
+    };
+
+    function validateDemographics(response) {
+      const age = parseInt(response.age, 10);
+      const nationality = response.nationality;
+
+      // Validate age: must be a number between 1 and 120
+      if (!Number.isInteger(age) || age < 1 || age > 120) {
+        alert("Please enter a valid age between 1 and 120.");
+        return false;
+      }
+
+      // Validate nationality: must only contain letters
+      const nationalityRegex = /^[A-Za-z\s]+$/;
+      if (!nationalityRegex.test(nationality)) {
+        alert("Please enter a valid nationality using only letters.");
+        return false;
+      }
+
+      return true;
+    }
+    
+    var demographics = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+        <div style="text-align: left; max-width: 400px; margin: auto;">
+        <label for="age" style="font-size: 18px; display: block; margin-bottom: 5px;">Please enter your age (whole number only):</label>
+        <input type="text" id="age" name="age" required placeholder="e.g., 25" 
+            style="width: 100%; padding: 8px; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+        
+        <label for="nationality" style="font-size: 18px; display: block; margin-bottom: 5px;">Please enter your nationality:</label>
+        <input type="text" id="nationality" name="nationality" required placeholder="e.g., American" 
+            style="width: 100%; padding: 8px; font-size: 16px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+        
+        <div style="text-align: center;">
+            <button id="submit-btn" style="padding: 10px 20px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: transparent; color: black; cursor: pointer;">Continue</button>
+        </div>
+        </div>
+    `,
+    choices: "NO_KEYS",  // Disable keyboard choices to let the form handle input
+    on_load: function() {
+        // Restrict age input to numbers only
+        document.querySelector("#age").addEventListener("input", function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+        });
+        
+        // Restrict nationality input to letters only
+        document.querySelector("#nationality").addEventListener("input", function() {
+        this.value = this.value.replace(/[^a-zA-Z]/g, '');
+        });
+
+        // Submit button functionality
+        document.querySelector("#submit-btn").addEventListener("click", function(event) {
+        event.preventDefault();  // Prevent default form submission
+        
+        // Collect the values
+        const age = document.querySelector("#age").value;
+        const nationality = document.querySelector("#nationality").value;
+
+        // If both fields are filled out, finish the trial
+        if (age && nationality) {
+            jsPsych.finishTrial({
+            age: age,
+            nationality: nationality
+            });
+          }
+        });
+      }
+    };
+    
+    var gender = {
+      type: jsPsychSurveyMultiChoice,
+      questions: [
+        {
+          prompt: "Please select your gender:",
+          name: 'gender',
+          options: ['Male', 'Female', 'Non-binary', 'Prefer not to say', 'Other'],
+          required: true,
+          horizontal: false
+        }
+      ]
+    };
+
+    var comments = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: "If you have any comments about this study, please leave them here."}
+      ]
+    };
+
+    var endSurvey = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <div class="wrap-text">
+          <p>Thank you for participating in our study! We are interested in understanding how the way information is presented about charitable organizations influences people's willingness to support them. By exploring how different types of information impact donation behavior, we aim to gain insights that could help charities communicate more effectively and engage supporters in meaningful ways. Your responses are invaluable in helping us achieve these goals. Thank you for your time and contribution!</p>
+          <p>If you are selected to receive a prize, we will contact you by the end of December.</p>
+          <p>You may close this page.</p>
+        </div>
+      `,
+    };
+
+    const save_data = {
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "g4EDTsGKfpJp",
+      filename: filename,
+      data_string: () => jsPsych.data.get().csv(),
+    };
+
+    // Add trials to the timeline
+    timeline.push(welcome);
+    timeline.push(consent);
+    timeline.push(introduction);
+    timeline.push(...unrelatedSurveyQuestions);
+    timeline.push(prizeExplanationAndCheck, overheadInformationAndCheck, charityDescription);
+    timeline.push(instructions);
+    timeline.push(donationTrial);
+    timeline.push(satisfaction);
+    timeline.push(demographics);
+    timeline.push(gender);
+    timeline.push(comments);
+    timeline.push(save_data);
+    timeline.push(endSurvey);
+
+    jsPsych.run(timeline);
+  </script>
+</html>
