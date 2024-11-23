@@ -14,7 +14,7 @@ format:
 
 In the replication of Study 2 from the paper *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead*, the aim is to test the study’s findings on how donation collection methods impact donation behaviors, specifically targeting overhead aversion. Overhead aversion is the tendency for donors to resist contributing to operational expenses, preferring instead that their contributions go directly toward the cause. This aversion can hinder charities’ abilities to cover essential costs, potentially compromising their long-term goals. The original study investigates whether presenting the cause and overhead components of donations in different sequences can alleviate overhead aversion, increase overall donations, and maintain donor satisfaction.
 
-To replicate this experiment, participants will engage in a charitable donation scenario, deciding how to allocate a specified amount across cause and overhead expenses. The key manipulation is the sequence of allocation decisions: participants either allocate to the cause first, followed by overhead, or to overhead first followed by cause. A critical aspect will be designing donation collection screens that reflect realistic charity websites, helping participants understand and engage with the scenario authentically. Other challenges include ensuring participant engagement in an online setting and recruiting a sample that represents a range of donation experiences, as prior experience may affect donation behavior.
+To replicate this experiment, participants will engage in a charitable donation scenario, deciding how to allocate a specified amount across cause and overhead expenses. The key manipulation is the sequence of allocation decisions: participants either allocate to the cause first, followed by overhead, or to overhead first followed by cause. Some challenges in this replication include ensuring participant engagement in an online setting, recruiting a sample that represents a range of donation experiences, and mimicking a realistic donation experience to our best ability.
 
 Link to GitHub repo: <https://github.com/ucsd-psych201a/suk2023>
 
@@ -26,7 +26,7 @@ Link to Survey: <https://ucsd-psych201a.github.io/suk2023/website/>
 
 ### Power Analysis
 
-The original effect size was 0.41. In order for our sample to achieve 80% power in detecting that same effect size, we will need about 188 participants, evenly divided among the two conditions.
+The original effect size was 0.41. G\*power indicated that in order to achieve 80% power in detecting that same effect size, we will need about 188 participants, evenly divided among the two conditions.
 
 ### Planned Sample
 
@@ -34,21 +34,23 @@ We are aiming to recruit about 188 adult participants via Prolific, allowing us 
 
 ### Materials
 
-Participants will first take an unrelated lifestyle survey to distract from the key part of the survey later on. After this, participants will be notified on the screen that they have a 20% chance to receive additional prize money (8 USD) and may choose to donate part or all of this prize money. They will receive a briefing on the charity and how charities in general divide their funding by overhead and cause. A donation amount input form will be used to gauge participants' desired contributions. It will include two input boxes, one for overhead and one for cause, as well as a total sum at the bottom. One version of this (for Condition 1) will ask for the cause first, then overhead, and the second version (for Condition 2) will request the amounts in the reverse order. Once completed, the participant will complete a single question Likert scale rating between 1-7 (low-high) on the satisfaction they feel towards their donation.
+We will replicate the original survey using js-Psych to code our own replicated version. There will be two parts to it: a unrelated distractor survey, and then the donation collection section. The original study's wording was replicated as closely as possible with help from the original authors.
+
+Participants will first take an unrelated lifestyle survey to distract from the key part of the study, the donation collection. After this, participants will be notified on the screen that they have a 20% chance to receive additional prize money (5 USD) and may choose to donate part or all of this prize money. They will receive a briefing on the charity and how charities in general divide their funding by overhead and cause. A donation amount input form will be used to gauge participants' desired contributions. It will include two input boxes, one for overhead and one for cause, as well as a total sum at the bottom. One version of this (for Condition 1) will ask for the cause first, then overhead, and the second version (for Condition 2) will request the amounts in the reverse order. Once completed, the participant will complete a single question Likert scale rating between 1-7 (low-high) on the satisfaction they feel towards their donation.
 
 ### Procedure
 
-We first provide our particpants with a simple, unrelated survey that will not be related to the concept that we are examing, which is what was done in the original paper. Then at the end of the survey, participants will be notified that they have a 20% chance to win additional compensation (8 USD) if they complete the rest of the survey which consists of our measures of interest. They will be informed that they may choose to donate none, part, or all of this additional compensation to a charitable organization. If the participant indicates "0", they would keep the additional compensation for their self, and none would be donated.
+We first provide our participants with a simple, unrelated lifestyle survey to distract from the key part of the study, the donation collection. At the end of the survey, participants will be notified that they have a 20% chance to win additional compensation (5 USD) if they complete the rest of the survey which consists of our measures of interest. They will be informed that they may choose to donate none, part, or all of this additional compensation to a charitable organization.
 
-We will then present our participants with information on how charitable organizations collect and spend donation money. They will be notified that donated money goes to (1) helping the cause, and (2) covering the operational costs of the charity, and that some organizations receive donations separately for the two categories. Donation campaign information will be provided in order to give participants a general understanding of the charity that we select, however, the specific organization will not be revealed. Then, a comprehension check will ensure that participants are following along with the procedural setup.
+We will then present our participants with information on how charitable organizations collect and spend donation money. They will be notified that donated money goes to (1) helping the cause, and (2) covering the operational costs of the charity, and that some organizations receive donations separately for the two categories. If the participant indicates "0", they would keep the additional compensation for their self, and none would be donated. Donation campaign information will be provided in order to give participants a general understanding of the charity that we select, however, the specific organization will not be revealed. Then, a comprehension check will ensure that participants are following along with the presented information.
 
-Participants will then be randomly assigned into one of the two experimental conditions. In Condition 1, they will indicate how much money to donate to the cause first, and then, on the next page, they will indicate how much money to donate to the overhead expenses. In Condition 2, they will do this in reverse, first indicating how much should go towards overhead, followed by cause. In either condition, the total amount will be summed and displayed on the screen. Participants will be reminded that they can donate as much or little as they want, not exceeding the allowed amount, and they will receive whatever amount they do not donate. Finally, we will measure their self-reported satisfaction with their donation.
+Participants will then be randomly assigned into one of the two experimental conditions. In Condition 1, they will indicate how much money to donate to the cause first, and then indicate how much money to donate to the overhead expenses. In Condition 2, they will do this in reverse, first indicating how much should go towards overhead, followed by cause. In either condition, the total amount will be summed and displayed on the screen. Participants will be reminded that they can donate as much or little as they want, not exceeding the alloted amount of \$5, and they will receive whatever amount they do not donate. Next, we will measure their self-reported satisfaction with their donation on a Likert scale of 1-7 (low-high), as well as how strongly they agree with the statement "I usually donate to charity" 1-7 (low-high). Participants will be debriefed, including an explanation that the donation question was a rouse and that they will receive the entire 5 USD if they are part of the 20% selected, before finally asking for any feedback.
 
 ### Design Overview
 
 One factor is manipulated in this design; whether the participant is asked for cause or overhead donation first. We will measure 4 quantities; the amount donated towards overhead, amount donated towards cause, total amount, and donation satisfaction.
 
-This is a between-participants design. It would be difficult to execute this study as a within-participant model. Likely, it would increase the demand characteristics, because participants would register that we are studying their donation amount and this may affect their answers. Participants will only complete the measures once.
+This is a between-participants design. If this study was within-participant, it would increase the demand characteristics, because participants would register that we are studying their donation amount towards each category and this may affect their answers. Participants will only complete the measures once.
 
 Steps were taken to reduce demand characteristics by including an unrelated survey at the beginning of the study. This initial survey is designed to distract participants from identifying the true focus of the experiment, thereby minimizing the likelihood that they will alter their responses based on perceived expectations.
 
@@ -56,11 +58,11 @@ Potential confounds in the study could include participants' prior donation expe
 
 ### Analysis Plan
 
-We will undergo regression analysis to determine difference in donation amounts between conditions when compared against our other variables. A series of regression analyses will help to examine differences within conditions of money donated to cause versus overhead, as well as regarding donation satisfaction level. Multiple linear regressions can be conducted using condition as the independent variable and demographics as the dependent variables. This can also be done with other variables as the independent variables, such as donation amounts. A t-test can also compare mean amounts of donations within each category.
+We will undergo a series of regression analyses to determine any differences in donation amount between conditions. Our confirmatory analyses will help to examine the differences in the amounts donated to cause versus overhead, as well as total donation. We will use a p-value threshold of \< 0.05 to determine our success in replication the original results.
 
 ### Differences from Original Study
 
-With help from the original author's, we are able to provide our participants with as close to the original survey in terms of formatting and instructions, however, ours will vary slightly from those in the original experiment due to creating our own materials. The original survey's sample was primarily UK based, however we will not be controlling for this factor.
+With help from the original author's, we are able to provide our participants with as close to the original survey in terms of formatting and instructions, however, ours will vary slightly from those in the original experiment due to us creating our own materials. The original survey's sample was primarily UK based, however we will not be controlling for this factor.
 
 ### Methods Addendum (Post Data Collection)
 
@@ -78,7 +80,7 @@ Any differences from what was described as the original plan, or “none”.
 
 ### Data preparation
 
-We will collect data using a custom website derived from Js-Psych packages in our HTML code. Packages will be required in order to read and analyze .csv data, and to perform regression analyses and t-tests. Using the comprehension check responses, we will be able to filter our results based on whether they passed or not. The columns we will be creating are: Participant ID, Condition, Demographics (Age, Gender, Nationality), Amount donated to overhead, Amount donated to cause, Total amount, Donation satisfaction, and Donation status (whether or not they were in the 20% selected to win/donate the additional compensation).
+We will collect data using a custom website derived from jsPsych packages in our HTML code shared on GitHub. Packages will be required in order to read and analyze .csv data. Using the comprehension check responses, we will be able to filter our results based on whether they passed both or not. The columns we will be creating are: Participant ID, Condition, Demographics (Age, Gender, Nationality), Amount donated to overhead, Amount donated to cause, Total amount, Donation satisfaction, Prior donation experience, and Donation status (whether or not they were in the 20% selected to win/"donate" the additional compensation).
 
 ```{r include = TRUE, eval = FALSE}
 
@@ -230,7 +232,7 @@ CohensD
 
 ### Exploratory analyses
 
-Any follow-up analyses desired (not required).
+Multiple exploratory regressions can be conducted using donation satisfaction as the independent variable, and demographics such as age and gender as the dependent variables. A t-test can also compare mean amounts of donations within each category.
 
 ## Discussion
 
