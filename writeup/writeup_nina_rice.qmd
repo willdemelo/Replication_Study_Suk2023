@@ -82,7 +82,9 @@ Any differences from what was described as the original plan, or “none”.
 
 We will collect data using a custom website derived from jsPsych packages in our HTML code shared on GitHub. Packages will be required in order to read and analyze .csv data. Using the comprehension check responses, we will be able to filter our results based on whether they passed both or not. The columns we will be creating are: Participant ID, Condition, Demographics (Age, Gender, Nationality), Amount donated to overhead, Amount donated to cause, Total amount, Donation satisfaction, Prior donation experience, and Donation status (whether or not they were in the 20% selected to win/"donate" the additional compensation).
 
-```{r include = TRUE, eval = FALSE}
+Below is the data preparation and analysis for our Pilot B attempt at data collection. Participants took on average 2 minutes and 39 seconds to complete our survey.
+
+```{r include = TRUE, eval = TRUE}
 
 ## Necessary Packages
 library(jsonlite)
@@ -153,26 +155,15 @@ process_csv_files <- function(file_paths, output_file) {
 
 # Vector of filepaths for data pipe outputs to be strung together
 file_paths <- c(
-                "/Users/willdemelo/Downloads/drddd9wdeu.csv",
-                "/Users/willdemelo/Downloads/omw1tq4sk4.csv",
-                "/Users/willdemelo/Downloads/1tqhku354y.csv",
-                "/Users/willdemelo/Downloads/n0movtwg0g.csv",
-                "/Users/willdemelo/Downloads/kavyxrb1h0.csv",
-                "/Users/willdemelo/Downloads/tjke9lp2wu.csv",
-                "/Users/willdemelo/Downloads/ptfz66925c.csv",
-                "/Users/willdemelo/Downloads/pk96bckqw4.csv",
-                "/Users/willdemelo/Downloads/qn8pktwz1y.csv",
-                "/Users/willdemelo/Downloads/b5ky52o8p9.csv",
-                "/Users/willdemelo/Downloads/szsyve8hnj.csv",
-                "/Users/willdemelo/Downloads/l1p5o83rfb.csv",
-                "/Users/willdemelo/Downloads/2q4qg4qfad.csv",
-                "/Users/willdemelo/Downloads/zz3p6jlrtz.csv",
-                "/Users/willdemelo/Downloads/c9w0edjgaj.csv",
-                "/Users/willdemelo/Downloads/jbz60hjwlz.csv"
+                "/Users/nina/Downloads/vk7098a6qc.csv",
+                "/Users/nina/Downloads/6hf9baq07x.csv",
+                "/Users/nina/Downloads/wke8v3rwk2.csv",
+                "/Users/nina/Downloads/c5gpk5juov.csv",
+                "/Users/nina/Downloads/33lelrenhh.csv"
                 )
 
 # Defines filepath for .csv file
-output_file <- "/Users/willdemelo/Desktop/donation_testdata/testpilotdata.csv"
+output_file <- "/Users/nina/Desktop/testpilotdata.csv"
 
 # Runs function and produces .csv file
 result <- process_csv_files(file_paths, output_file)
@@ -206,7 +197,7 @@ cleanresult <- cleanresult %>%
   )
 
 # Produces .csv file 
-write.csv(cleanresult,"/Users/willdemelo/Desktop/donation_testdata/cleantestdata.csv", row.names = FALSE)
+write.csv(cleanresult,"/Users/nina/Desktop/cleantestdata.csv", row.names = FALSE)
 ```
 
 ### Confirmatory analysis
@@ -219,15 +210,33 @@ library(tidyverse)
 # Load the data
 cleanresult <- read.csv("/Users/nina/Downloads/cleantestdata.csv")
 
-# First regression analysis (total donations ~ other variables)
-output <- lm('total ~ condition + satisfaction + frequency + age + nationality + gender', data = cleanresult)
-summary(output)
+totaloutput <- lm('total ~ condition + age + gender', data = cleanresult)
+summary(totaloutput)
 
-outputmean <- cleanresult %>% group_by(condition) %>%  summarize(mean = mean(total))
-outputsd <- cleanresult %>% summarize(sd = sd(total))
+overoutput <- lm('overhead ~ condition + age + gender', data = cleanresult)
+summary(overoutput)
+
+causeoutput <- lm('cause ~ condition + age + gender', data = cleanresult)
+summary(causeoutput)
+
+donation1 <- lm('satisfaction ~ condition', data = cleanresult)
+summary(donation1)
+
+donation2 <- lm('satisfaction ~ condition + age + gender', data = cleanresult)
+summary(donation2)
+
+donation3 <- lm('satisfaction ~ condition + age + gender + cause + overhead', data = cleanresult)
+summary(donation3)
+
+## Cohen's D calculator (by condition) (replace satisfaction, the default with a variable like total, overhead, or cause)
+outputmean <- cleanresult %>% group_by(condition) %>%  summarize(mean = mean(satisfaction))
+
+outputsd <- cleanresult %>% summarize(sd = sd(satisfaction))
+
 CohensD <- (outputmean$mean[1] - outputmean$mean[2])/outputsd$sd[1]
 
 CohensD
+
 ```
 
 ### Exploratory analyses
