@@ -330,7 +330,7 @@
             html: `
             <div style="margin-bottom: 15px;">
                 <label>For the cause ($): </label>
-                <input type="number" id="causeInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
+                <input type="number" id="causeInput" min="0" max="5" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
             </div>
             `,
             label: "For the cause ($)"
@@ -339,7 +339,7 @@
             html: `
             <div style="margin-bottom: 15px;">
                 <label>For covering charitable organizations’ operating expense ($): </label>
-                <input type="number" id="expenseInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
+                <input type="number" id="expenseInput" min="0" max="5" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
             </div>
             `,
             label: "For covering charitable organizations’ operating expense ($)"
@@ -360,7 +360,7 @@
             <strong>Total Donation ($): </strong><span id="sum-value">0</span>
         </div>
         <div id="warning-message" style="color: red; margin-top: 5px; display: none;">
-            Total donation cannot exceed 8 US dollars, and only positive numbers are allowed.
+            Total donation cannot exceed 5 US dollars, and only positive numbers are allowed.
         </div>
         <div style="text-align: center; margin-top: 15px;">
             <button id="continueButton" disabled style="padding: 10px 20px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: transparent; color: black; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">Continue</button>
@@ -381,8 +381,8 @@
         let sum = value1 + value2;
         sumDisplay.innerText = sum.toFixed(2);
 
-        // Check for invalid inputs: sum exceeding 8, negative values, or incomplete fields
-        if (sum > 8 || value1 < 0 || value2 < 0) {
+        // Check for invalid inputs: sum exceeding 5, negative values, or incomplete fields
+        if (sum > 5 || value1 < 0 || value2 < 0) {
             warningDiv.style.display = "block";
             continueButton.disabled = true;
         } else if (causeInput.value && expenseInput.value && value1 >= 0 && value2 >= 0) {
