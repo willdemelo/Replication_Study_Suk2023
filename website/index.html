@@ -239,14 +239,16 @@
       preamble: `
         <div class="wrap-text">
           <p>Thank you for completing the survey on your lifestyle.</p>
-          <p>Please note 20% of participants will be randomly selected to receive an additional 8 USD as a bonus prize. 
-          If you are selected, you will have the option to donate some or all of this bonus to a charitable cause, 
-          or to keep the full amount. This selection is completely random, and everyone has an equal chance of winning the bonus prize.</p>
+          <p>Please note 20% of participants will be randomly selected to receive an additional 5 USD as a bonus prize. 
+          Regardless of whether you receive it or not, you will now have the opportunity to donate some of this prize money to a charitable cause.
+          You will be presented with the option to list how much money you would like to donate, which may be any amount of the 5 USD you stand to gain.
+          Then, if you are selected to recieve the prize, we will donate the amount you specified from your prize money to a charity and send you the remainder.
+          You may donate any amount of the 5 USD you stand to gain, or keep the full amount. Selection for this prize is completely random, and everyone has an equal chance of winning the bonus prize.</p>
         </div>
       `,
       questions: [
         {
-          prompt: "What is the chance you will receive an additional 8 USD with the option to donate?",
+          prompt: "What is the chance you will receive an additional 5 USD with the option to donate?",
           name: 'chance_response',
           options: ["50%", "20%", "10%"],
           required: true
@@ -281,7 +283,7 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <div class="wrap-text">
-          <p>Today, you’ll have the opportunity to support a campaign aiding children born with disabilities in Asia, run by a trustworthy charity.</p>
+          <p>Today, you will have the opportunity to support a campaign aiding children born with disabilities in Asia, run by a trustworthy charity.</p>
           <p>Press any key to continue.</p>
         </div>
       `,
@@ -291,8 +293,11 @@
       type: jsPsychHtmlKeyboardResponse,
       stimulus: `
         <div class="wrap-text">
-          <p>Please indicate how much money you would donate to the charity, and for what specific purpose.</p>
-          <p>You can only donate a total that is equal to or less than 8 USD.</p>
+          <p>Please indicate how much of your prize money you would donate to the charity, and for what specific purpose.
+          As a reminder, you have a 20% chance to earn 5 USD upon completion of this survey, and provided that you win the prize money,
+          we will send you the remainder of what you agree to donate. If you are not selected to receive the 5 USD prize, no donation will occur.
+          </p>
+          <p>You can only donate a total that is equal to or less than 5 USD. You may also donate 0 USD to both purposes to keep the full 5 USD.</p>
           <p>Press any key to continue.</p>
         </div>
       `,
@@ -314,7 +319,7 @@
         // Preamble message
         const preamble = `
         <div style="margin-bottom: 20px; font-weight: bold;">
-            <p>Remember, you can donate as little or as much as you want, as long as the total does not exceed 8 USD.</p> 
+            <p>Remember, you can donate as little or as much as you want, as long as the total does not exceed 5 USD.</p> 
             <p>Any amount not donated will be awarded to you as a prize if you win.</p>
         </div>
         `;
@@ -325,7 +330,7 @@
             html: `
             <div style="margin-bottom: 15px;">
                 <label>For the cause ($): </label>
-                <input type="number" id="causeInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
+                <input type="number" id="causeInput" min="0" max="5" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
             </div>
             `,
             label: "For the cause ($)"
@@ -334,7 +339,7 @@
             html: `
             <div style="margin-bottom: 15px;">
                 <label>For covering charitable organizations’ operating expense ($): </label>
-                <input type="number" id="expenseInput" min="0" max="8" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
+                <input type="number" id="expenseInput" min="0" max="5" style="width: 60px; -moz-appearance: textfield; -webkit-appearance: none; appearance: none;" required>
             </div>
             `,
             label: "For covering charitable organizations’ operating expense ($)"
@@ -355,7 +360,7 @@
             <strong>Total Donation ($): </strong><span id="sum-value">0</span>
         </div>
         <div id="warning-message" style="color: red; margin-top: 5px; display: none;">
-            Total donation cannot exceed 8 US dollars, and only positive numbers are allowed.
+            Total donation cannot exceed 5 US dollars, and only positive numbers are allowed.
         </div>
         <div style="text-align: center; margin-top: 15px;">
             <button id="continueButton" disabled style="padding: 10px 20px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px; background-color: transparent; color: black; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;">Continue</button>
@@ -376,8 +381,8 @@
         let sum = value1 + value2;
         sumDisplay.innerText = sum.toFixed(2);
 
-        // Check for invalid inputs: sum exceeding 8, negative values, or incomplete fields
-        if (sum > 8 || value1 < 0 || value2 < 0) {
+        // Check for invalid inputs: sum exceeding 5, negative values, or incomplete fields
+        if (sum > 5 || value1 < 0 || value2 < 0) {
             warningDiv.style.display = "block";
             continueButton.disabled = true;
         } else if (causeInput.value && expenseInput.value && value1 >= 0 && value2 >= 0) {
@@ -514,7 +519,7 @@
       stimulus: `
         <div class="wrap-text">
           <p>Thank you for participating in our study! We are interested in understanding how the way information is presented about charitable organizations influences people's willingness to support them. By exploring how different types of information impact donation behavior, we aim to gain insights that could help charities communicate more effectively and engage supporters in meaningful ways. Your responses are invaluable in helping us achieve these goals. Thank you for your time and contribution!</p>
-          <p>If you are selected to receive a prize, we will contact you by the end of December.</p>
+          <p>Regardless of the amount you said you wanted to donate, if you are selected to receive our prize, you will receive the full 5 USD. Additionally, if you are selected, we will contact you by the end of December.</p>
           <p><a href="https://app.prolific.com/submissions/complete?cc=C1E26669">Click here to return to Prolific to ensure that your participation is recorded.</a></p>
         </div>
       `,

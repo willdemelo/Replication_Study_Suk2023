@@ -66,24 +66,7 @@ process_csv_files <- function(file_paths, output_file) {
 }
 
 # Vector of filepaths for data pipe outputs to be strung together
-file_paths <- c(
-                "/Users/willdemelo/Downloads/drddd9wdeu.csv",
-                "/Users/willdemelo/Downloads/omw1tq4sk4.csv",
-                "/Users/willdemelo/Downloads/1tqhku354y.csv",
-                "/Users/willdemelo/Downloads/n0movtwg0g.csv",
-                "/Users/willdemelo/Downloads/kavyxrb1h0.csv",
-                "/Users/willdemelo/Downloads/tjke9lp2wu.csv",
-                "/Users/willdemelo/Downloads/ptfz66925c.csv",
-                "/Users/willdemelo/Downloads/pk96bckqw4.csv",
-                "/Users/willdemelo/Downloads/qn8pktwz1y.csv",
-                "/Users/willdemelo/Downloads/b5ky52o8p9.csv",
-                "/Users/willdemelo/Downloads/szsyve8hnj.csv",
-                "/Users/willdemelo/Downloads/l1p5o83rfb.csv",
-                "/Users/willdemelo/Downloads/2q4qg4qfad.csv",
-                "/Users/willdemelo/Downloads/zz3p6jlrtz.csv",
-                "/Users/willdemelo/Downloads/c9w0edjgaj.csv",
-                "/Users/willdemelo/Downloads/jbz60hjwlz.csv"
-                )
+file_paths <- list.files(path = "~/Downloads/Pilot_B", full.names = TRUE)
 
 # Defines filepath for .csv file
 output_file <- "/Users/willdemelo/Desktop/donation_testdata/testpilotdata.csv"
@@ -120,13 +103,36 @@ cleanresult <- cleanresult %>%
   )
 
 # Produces .csv file 
-write.csv(cleanresult,"/Users/willdemelo/Desktop/donation_testdata/cleantestdata.csv", row.names = FALSE)
+write.csv(cleanresult,"/Users/willdemelo/Desktop/donation_testdata/cleantestdataB.csv", row.names = FALSE)
 
 ## Analyses
-# First regression analysis (total donations ~ other variables)
-output <- lm('total ~ condition + satisfaction + frequency + age + nationality + gender', data = cleanresult)
-summary(output)
+# Confirmatory analyses based on predicting donation amounts
+totaloutput <- lm('total ~ condition + age + gender', data = cleanresult)
+summary(totaloutput)
 
-outputmean <- cleanresult %>% group_by(condition) %>%  summarize(mean = mean(total))
-outputsd <- cleanresult %>% summarize(sd = sd(total))
+overoutput <- lm('overhead ~ condition + age + gender', data = cleanresult)
+summary(overoutput)
+
+causeoutput <- lm('cause ~ condition + age + gender', data = cleanresult)
+summary(causeoutput)
+
+# Exploratory analyses based on predicting donor satisfaction
+donation1 <- lm('satisfaction ~ condition', data = cleanresult)
+summary(donation1)
+
+donation2 <- lm('satisfaction ~ condition + age + gender', data = cleanresult)
+summary(donation2)
+
+donation3 <- lm('satisfaction ~ condition + age + gender + cause + overhead', data = cleanresult)
+summary(donation3)
+
+## Cohen's D calculator for assessing statistical power of condition
+outputmean <- cleanresult %>% group_by(condition) %>%  summarize(mean = mean(dv))
+
+outputsd <- cleanresult %>% summarize(sd = sd(dv))
+
 CohensD <- (outputmean$mean[1] - outputmean$mean[2])/outputsd$sd[1]
+
+CohensD
+
+
