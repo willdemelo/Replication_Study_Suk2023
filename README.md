@@ -24,21 +24,19 @@ This is my full writeup of our entire replication effort. You can find it [here]
 
 ## Contribution Overview
 
-I contributed to this project in the following ways, as documented by my CRediT statement, visible at the end of the writeup file.
+I contributed to this project in the following ways, as documented by my CRediT statement at the end of the writeup file:
 
 *Software*:
 
-I made significant contributions to the production of our website's .html code. Specifically, I wrote the code used in the prompts and questions for the actual experiment, and set up the data pipeline between our website and our OSF repository.
-
-Additionally, I wrote nearly all of the R code in the writeup, especially the functions for cleaning the raw data, performing the statistical tests, and creating the visualizations.
+I made significant contributions to the production of our website's .html code. Specifically, I wrote the code used in the prompts and questions for the experiment, and set up the data pipeline between our website and our OSF repository. Additionally, I wrote nearly all of the R code in the writeup, especially the functions for cleaning the raw data and performing the statistical tests. I also created visualizations in the discussion section for ease of interpretation.
 
 *Investigation*:
 
-I hosted our survey on the crowdworking website, Prolific. This means that I was in charge of establising parameters describing exactly how our data collection should progress, supervising the collection of responses as they were coming in, and paying our participants fairly at the end of data collection.
+I hosted our survey on the crowdworking website, Prolific. Essentially, I was in charge of establising parameters describing exactly how our data collection should progress, supervising the collection of responses as they were coming in, and paying our participants for their time at the end of data collection.
 
 *Data curation*:
 
-I checked our data for PII, so that none of participants' identities would be accidentally compromised. Additionally, I formatted the raw data from individual .csv files for each response into a single .csv file that could be analyzed in R and cleaned that .csv file further to remove JSON formatting and be legible to others.
+I checked our data for PII, so that none of participants' identities would be accidentally compromised. Additionally, I formatted the raw data from individual .csv files for each response into a single .csv file that could be analyzed in R. I then cleaned that .csv file further to remove JSON formatting and prepare it for analysis.
 
 *Formal analysis*:
 
@@ -46,11 +44,11 @@ I conducted all of the calculations in the writeup, including the series of regr
 
 *Validation*:
 
-I was responsible for the discussion section of the writeup, where I describe in detail how our results fail to replicate and possible reasons for why.
+I was responsible for the discussion section of the writeup, where I describe in detail how our results fail to replicate and possible reasons for why. For instance, I show that the differences between our results and the original study's are likely due to the difference among our samples; the original study used a UK sample, and we used a US sample. The cultural differences between two populations may have exerted a confounding effect on our results, leading to a lack of variation between our two conditions and causing our confirmatory analyses to fail ro replicate.
 
 *Writing - original draft and Writing - review & editing*:
 
-I wrote the original draft of the writeup used on our [OSF pre-registration](https://osf.io/52sfp) and further reviewed and edited that draft for the final product published online.
+I wrote the original draft of the writeup used for our [OSF pre-registration](https://osf.io/52sfp) and further reviewed and edited that draft for the final product published online.
 
 ## Resources
 - **Editor Used:** RStudio
@@ -60,7 +58,7 @@ I wrote the original draft of the writeup used on our [OSF pre-registration](htt
   This writeup was produced as a Quarto Markdown (.qmd) file, which allows for greater ease of rendering and publishing documents produced in RStudio.
 
 ### tidyverse
-  Tidyverse has essential libraries that form the backbone of this project's infrastructure, especially concerning loading the data (readr), data organization (dplyr, tidyr, stringr, tibble) and visualization (ggplot2).
+  tidyverse has essential libraries that form the backbone of this project's infrastructure, especially concerning loading the data (readr), data organization (dplyr, tidyr, stringr, tibble) and visualization (ggplot2).
 
 ### jsonlite
   jsonlite helps with removing the JSON formatting from our raw data. Because this data was transferred from our custom survey website to our OSF repository, and then loaded into R, the raw data is in JSON format, which must be removed for the analysis to progress.
