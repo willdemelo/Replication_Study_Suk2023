@@ -16,11 +16,11 @@ The [original 2023 paper](https://github.com/willdemelo/Replication_Study_Suk202
 
 ### Website
 
-We utilized a custom website to host the survey that was used to collect our data. This website was hosted on the popular crowdworking website, Prolific, where we worked with online participants to get our results. To review our methodology, you can view the .html code, or take the survey yourself [here](https://willdemelo.github.io/Replication_Study_Suk2023/website/). Notable features of this website include the usage of jsPysch plugins to create our questions and general infrastructure, restrictions we placed on participants' answering (for instance, that they must answer to move forward, and cannot put in the wrong kind of answer) as well as the datapipe that takes raw data from the survey and sends it to our public repository at the [Open Science Framework](https://osf.io/jzx7e/).
+We utilized a custom website to host the survey that was used to collect our data. This website was hosted on the popular crowdworking website, Prolific, where we worked with online participants to get our results. To review our methodology, you can view the [.html code](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/website/index.html), or take the survey yourself [here](https://willdemelo.github.io/Replication_Study_Suk2023/website/). Notable features of this website include the usage of jsPysch plugins to create our questions and general infrastructure, restrictions we placed on participants' answering (for instance, that they must answer to move forward, and cannot put in the wrong kind of answer) as well as the datapipe that takes raw data from the survey and sends it to our public repository at the [Open Science Framework](https://osf.io/jzx7e/).
 
 ### Writeup
 
-This is my full writeup of our entire replication effort. It is a comprehensive look at our methods, results, and intepretation thereof. For a more convinient look at the writeup, please visit the rendered version published [online](https://rpubs.com/willdemelo/1253815).
+This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup/writeup). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/1253815).
 
 ## Contribution Overview
 
