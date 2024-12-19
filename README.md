@@ -1,6 +1,6 @@
 # Replication of Suk and Mudita's 2023 Experiment on Donation Collection Methods
 
-This is the documentation of a replication effort of Dr. Kwanho Suk and Dr. Triza Mudita's study, **Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead.** I and three others attempt to replicate the second experiment described in this article, which found that participants donate more money to a hypothetical charity when asked to donate to a charity's overhead expenses first and advertised cause second, as opposed to the other way around. However, our results failed to replicate, indicating a more complicated relatioinship.
+This is the documentation of a replication effort of Dr. Kwanho Suk and Dr. Triza Mudita's study, *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead.* I and three others attempt to replicate the second experiment described in this article, which found that participants donate more money to a hypothetical charity when asked to donate to a charity's overhead expenses first and advertised cause second, as opposed to the other way around. However, our results failed to replicate, indicating a more complicated relationship.
 
 ## Project Overview
 
@@ -12,7 +12,7 @@ This is the data that we collected. All of it is fully anonymized with no risk o
 
 ### Original Paper
 
-The [original 2023 paper](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/original_paper/effects_of_donation_collection_methods) by Dr. Suk and Dr. Mudita is included for reference. You can also find it on [Wiley online library](https://onlinelibrary.wiley.com/doi/abs/10.1002/mar.21781). We specifically replicated *Study 2* from the original paper.
+The [original 2023 paper](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/original_paper/effects_of_donation_collection_methods) by Dr. Suk and Dr. Mudita is included for reference. You can also find it on [Wiley online library](https://onlinelibrary.wiley.com/doi/abs/10.1002/mar.21781). We specifically replicated **Study 2** from the original paper.
 
 ### Website
 
