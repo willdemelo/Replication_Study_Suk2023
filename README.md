@@ -8,11 +8,11 @@ This repository documenting the entirety of the replication effort consists of a
 
 ### Data
 
-This is the data that we collected. All of it is fully anonymized with no risk of Personalliy Identifiable Information (PII) leaking. I include data that was used during our first and second pilot studies iin PilotDataA.csv and PilotDataB.csv. Our raw sample data that was used for our calculations is included in sampledata.csv, and our cleaned sample data that was edited to be remove JSON formatting, in order to be more legible, and filtered based on comprehension checks, so that only serious responses are used, is included in filteredsampledata.csv.
+This is the data that we collected. All of it is fully anonymized with no risk of Personalliy Identifiable Information (PII) leaking. I include data that was used during our first and second pilot studies in [PilotDataA.csv](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/data/PilotDataA.csv) and [PilotDataB.csv](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/data/PilotDataB.csv). Our raw sample data that was used for our calculations is included in [sampledata.csv](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/data/sampledata.csv), and our cleaned sample data that was edited to be remove JSON formatting, in order to be more legible, and filtered based on comprehension checks, so that only serious responses are used, is included in [filteredsampledata.csv](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/data/filteredsampledata.csv).
 
 ### Original Paper
 
-The original 2023 paper by Dr. Suk and Dr. Mudita is included for reference. We specifically replicated *Study 2* from the original paper.
+The [original 2023 paper](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/original_paper/effects_of_donation_collection_methods) by Dr. Suk and Dr. Mudita is included for reference. You can also find it on [Wiley online library](https://onlinelibrary.wiley.com/doi/abs/10.1002/mar.21781). We specifically replicated *Study 2* from the original paper.
 
 ### Website
 
