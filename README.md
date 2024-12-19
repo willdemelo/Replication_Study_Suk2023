@@ -1,4 +1,4 @@
-# Replication Project Template
+## Replication of Suk and Mudita's Experiment on Donation Collection Methods
 
 This is a GitHub template to use for replications projects in PSYCH 201a / CSS 204. Create a new repo using this as a template in order to use it.
 
