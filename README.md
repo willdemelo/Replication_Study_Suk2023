@@ -16,7 +16,7 @@ The original 2023 paper by Dr. Suk and Dr. Mudita is included for reference. We 
 
 ### Website
 
-We utilized a custom website to host the survey that was used to collect our data. This website was hosted on Prolific, where we worked with crowdworkers to get our results. To review our methodology, you can view the .html code, or take the survey yourself [here](https://ucsd-psych201a.github.io/suk2023/website/). Notable features of this website include the restrictions we placed on participants' answering (for instance, that they must answer to move forward, and cannot put in the wrong kind of answer) as well as the datapipe that takes raw data from the survey and sends it to our public repository at the [Open Science Framework](https://osf.io/jzx7e/).
+We utilized a custom website to host the survey that was used to collect our data. This website was hosted on the popular crowdworking website, Prolific, where we worked with online participants to get our results. To review our methodology, you can view the .html code, or take the survey yourself [here](https://ucsd-psych201a.github.io/suk2023/website/). Notable features of this website include the usage of jsPysch plugins to create our questions and general infrastructure, restrictions we placed on participants' answering (for instance, that they must answer to move forward, and cannot put in the wrong kind of answer) as well as the datapipe that takes raw data from the survey and sends it to our public repository at the [Open Science Framework](https://osf.io/jzx7e/).
 
 ### Writeup
 
@@ -26,14 +26,22 @@ This is my full writeup of our entire replication effort. It is a comprehensive 
 
 I contributed to this project in the following ways, as documented by my CRediT statement, visible at the end of the writeup file.
 
-*Data curation*
-I 
-*Formal analysis*
+*Software*
+I made significant contributions to the production of our website's .html code. Specifically, I wrote the code used in the prompts and questions for the actual experiment, and set up the data pipeline between our website and our OSF repository.
+
+Additionally, I wrote nearly all of the R code in the writeup, especially the functions for cleaning the raw data, performing the statistical tests, and creating the visualizations.
 
 *Investigation*
-I was the one who hosted our survey on Prolific. This means that I established parameters describing exactly how our data collection should progress, supervised the collection of responses as they were coming in, and paid participants at the end of data collection.
+I hosted our survey on the crowdworking website, Prolific. This means that I was in charge of establising parameters describing exactly how our data collection should progress, supervising the collection of responses as they were coming in, and paying our participants fairly at the end of data collection.
 
-*Software*
+*Data curation*
+I checked our data for PII, so that none of participants' identities would be accidentally compromised.
+
+*Formal analysis*
+
+
+
+
 *Validation*
 *Writing - original draft*
 *Writing - review & editing*
