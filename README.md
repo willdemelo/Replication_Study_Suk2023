@@ -12,7 +12,7 @@ This is the data that we collected. All of it is fully anonymized with no risk o
 
 ### Original Paper
 
-The [original 2023 paper](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/original_paper/effects_of_donation_collection_methods) by Dr. Suk and Dr. Mudita is included for reference. You can also find it on [Wiley online library](https://onlinelibrary.wiley.com/doi/abs/10.1002/mar.21781). We specifically replicated **Study 2** from the original paper.
+The [original 2023 paper](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/original_paper.pdf) by Dr. Suk and Dr. Mudita is included for reference. You can also find it on [Wiley online library](https://onlinelibrary.wiley.com/doi/abs/10.1002/mar.21781). We specifically replicated **Study 2** from the original paper.
 
 ### Website
 
@@ -20,7 +20,7 @@ We utilized a custom website to host the survey that was used to collect our dat
 
 ### Writeup
 
-This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup/writeup). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/1253815).
+This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup.qmd). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/1253815).
 
 ## Contribution Overview
 
