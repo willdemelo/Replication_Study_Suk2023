@@ -1,3 +1,0 @@
-*.qmd linguist-language=RMarkdown
-*.html linguist-vendored
-*.R linguist-detectable
