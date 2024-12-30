@@ -1,6 +1,6 @@
 # Replication of Suk and Mudita's 2023 Experiment on Donation Collection Methods
 
-This is the documentation of a replication effort of Dr. Kwanho Suk and Dr. Triza Mudita's study, *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead.* I and three others attempt to replicate the second experiment described in this article, which found that participants donate more money to a hypothetical charity when asked to donate to a charity's overhead expenses first and advertised cause second, as opposed to the other way around. However, our results failed to replicate, indicating a more complicated relationship.
+This is the documentation of a replication effort of Dr. Kwanho Suk and Dr. Triza Mudita's study, *Effects of donation collection methods on donation amount: Nudging donation for the cause and overhead.* I and three others replicate the second experiment described in this article, which found that participants donate more money to a hypothetical charity when asked to donate to a charity's overhead expenses first and advertised cause second, as opposed to the other way around. However, oue results failed to find this same effect, indicating a more complicated relationship.
 
 ## Project Overview
 
