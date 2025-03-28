@@ -1,0 +1,62 @@
+"rt","stimulus","response","trial_type","trial_index","plugin_version","time_elapsed","question_order","causeDonation","expenseDonation","totalDonation","questionOrder","age","nationality"
+"14452","Welcome to our study! Press any key to begin."," ","html-keyboard-response","0","2.0.0","14460","","","","","","",""
+"2290","
+        <div class=""wrap-text"" style=""max-height: 400px; overflow-y: auto; padding: 20px; border: 1px solid #ccc; line-height: 1.5;"">
+          <h2>Consent Form</h2>
+          <p>You are being invited to participate in a research study titled “Reproducibility of Psychological Science and Instruction.” This study is being done by Dr. Bria Long from UC San Diego and associated graduate students in the Experimental Methods course. You were selected to participate in this study because you are an adult in the U.S. and have been a represented population in previous psychology studies.</p>
+          
+          <p>The purpose of this study is to better understand how well previously published studies in the psychological field replicate online and with different populations. Your participation in this research should last approximately 5-30 minutes. If you agree to take part in this study, you may be asked to view a set of stimuli, including pictures, sounds, written text, or videos, and then give responses via key presses, verbally, or with paper-and-pencil. We may also observe your choices or preferences among an array of stimuli. These stimuli will be taken directly from or closely adapted from studies that already exist in the published psychological literature. Stimuli will include, e.g., pictures of objects and human faces, audio and video clips, short text passages, etc. None of the stimuli will be disturbing, threatening, or offensive. The online and in-person experiments described in this protocol will take no more than 30 minutes. An example game you might play would be to click on an image on the screen that matches a word you hear being said out loud. Your total expected time commitment for this study is between 5-30 minutes, as specified in the study description.</p>
+    
+          <p>Your participation in this study is completely voluntary, and you can withdraw at any time. Choosing not to participate or withdrawing will result in no penalty or loss of benefits to which you are entitled. You are free to skip any question that you choose.</p>
+    
+          <p>We will not be asking for any personally identifying information, and we will handle responses as confidentially as possible. Your SONA or Prolific IDs will never be tied to your responses on this survey. However, we cannot guarantee the confidentiality of information transmitted over the Internet. To minimize this risk, data containing anything that might be personally identifiable (e.g., Prolific IDs or IP addresses) will be encrypted on transfer and storage and will only be accessible to qualified lab personnel. We will be keeping data collected as part of this experiment indefinitely. This anonymized data (containing neither Prolific IDs nor IP addresses) may be shared with the scientific community or with other participants to be used as stimuli in future studies.</p>
+    
+          <p>If you have questions about this project or if you have a research-related problem, you may contact the researcher(s), Dr. Bria Long, at <a href=""mailto:brlong@ucsd.edu"">brlong@ucsd.edu</a>. If you have any questions concerning your rights as a research subject, you may contact the UC San Diego Office of IRB Administration at <a href=""mailto:irb@ucsd.edu"">irb@ucsd.edu</a> or 858-246-4777.</p>
+    
+          <p>By participating in this research, you are indicating that you are at least 18 years old, have read this consent form, and agree to participate in this research study. Please keep this consent form for your records.</p>
+    
+          <p><strong>Press any key to continue.</strong></p>
+        </div>
+      "," ","html-keyboard-response","1","2.0.0","16752","","","","","","",""
+"2303","
+        <div class=""wrap-text"">
+          <h2>Daily Routines and Lifestyle Survey</h2>
+          <p>Thank you for participating in this survey! We’re interested in understanding people’s daily routines, lifestyle preferences, and general habits. 
+          Your responses will help us get a sense of typical day-to-day activities and how people spend their free time. 
+          Please answer each question as accurately as possible based on your usual routines.</p>
+          <p>Press any key to begin.</p>
+        </div>
+      "," ","html-keyboard-response","2","2.0.0","19056","","","","","","",""
+"3310","","{""Q0"":""7-8 hours""}","survey-multi-choice","3","null","22387","[0]","","","","","",""
+"20616","","{""Q0"":""I enjoy reading because I love escaping into different worlds.""}","survey-text","4","null","43155","","","","","","",""
+"4193","","{""Q0"":""30-60 minutes""}","survey-multi-choice","5","null","47350","[0]","","","","","",""
+"3955","","{""Q0"":2}","survey-likert","6","null","51313","[0]","","","","","",""
+"4186","","{""Q0"":""Watching TV or movies""}","survey-multi-choice","7","null","55505","[0]","","","","","",""
+"2843","","{""Q0"":""More than 4 hours""}","survey-multi-choice","8","null","58355","[0]","","","","","",""
+"3097","","{""Q0"":""Weekly""}","survey-multi-choice","9","null","61457","[0]","","","","","",""
+"3173","","{""Q0"":""Mostly indoors""}","survey-multi-choice","10","null","64639","[0]","","","","","",""
+"3192","","{""Q0"":3}","survey-likert","11","null","67838","[0]","","","","","",""
+"3203","","{""Q0"":""Occasionally""}","survey-multi-choice","12","null","71048","[0]","","","","","",""
+"10694","","{""chance_response"":""20%""}","survey-multi-choice","13","null","81748","[0]","","","","","",""
+"11644","","{""donation_use_response"":""All of the above""}","survey-multi-choice","14","null","93399","[0]","","","","","",""
+"4613","
+        <div class=""wrap-text"">
+          <p>Today, you will have the opportunity to support a campaign aiding children born with disabilities in Asia, run by a trustworthy charity.</p>
+          <p>Press any key to continue.</p>
+        </div>
+      "," ","html-keyboard-response","15","2.0.0","98018","","","","","","",""
+"4248","
+        <div class=""wrap-text"">
+          <p>Please indicate how much of your prize money you would donate to the charity, and for what specific purpose.
+          As a reminder, you have a 20% chance to earn 5 USD upon completion of this survey, and provided that you win the prize money,
+          we will send you the remainder of what you agree to donate. If you are not selected to receive the 5 USD prize, no donation will occur.
+          </p>
+          <p>You can only donate a total that is equal to or less than 5 USD. You may also donate 0 USD to both purposes to keep the full 5 USD.</p>
+          <p>Press any key to continue.</p>
+        </div>
+      "," ","html-keyboard-response","16","2.0.0","102266","","","","","","",""
+"","","","html-keyboard-response","17","2.0.0","115030","","1","0","1","[""For the cause ($)"",""For covering charitable organizations’ operating expense ($)""]","",""
+"4250","","{""Q0"":4,""Q1"":3}","survey-likert","18","null","119283","[0,1]","","","","","",""
+"","","","html-keyboard-response","19","2.0.0","128061","","","","","","44","American"
+"2123","","{""gender"":""Female""}","survey-multi-choice","20","null","130186","[0]","","","","","",""
+"1536","","{""Q0"":""""}","survey-text","21","null","131780","","","","","","",""
