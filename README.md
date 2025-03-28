@@ -40,7 +40,7 @@ I checked our data for PII, so that none of participants' identities would be ac
 
 *Formal analysis*:
 
-I conducted all of the calculations in the writeup, including the series of regression analyses, Cohen's D calculations, and Z and Chi-squared hypothsis tests. I also worked on the presentation and visualizations for the cleaned-up version of the version that I published online.
+I conducted all of the calculations in the writeup, including the series of regression analyses, Cohen's D calculations, and Z and Chi-squared hypothsis tests. I also worked on the presentation and visualizations for the cleaned-up version of the writeup that I published online.
 
 *Validation*:
 
