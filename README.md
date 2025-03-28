@@ -20,7 +20,7 @@ We utilized a custom website to host the survey that was used to collect our dat
 
 ### Writeup
 
-This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup.qmd). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/1253815).
+This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup.qmd). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/1290322).
 
 ## Contribution Overview
 
@@ -40,7 +40,7 @@ I checked our data for PII, so that none of participants' identities would be ac
 
 *Formal analysis*:
 
-I conducted all of the calculations in the writeup, including the series of regression analyses, Cohen's D calculations, and Z and Chi-squared hypothsis tests.
+I conducted all of the calculations in the writeup, including the series of regression analyses, Cohen's D calculations, and Z and Chi-squared hypothsis tests. I also worked on the presentation and visualizations for the cleaned-up version of the version that I published online.
 
 *Validation*:
 
