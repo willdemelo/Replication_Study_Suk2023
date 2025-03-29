@@ -352,7 +352,9 @@ knitr::kable(
 # Cohen's D calculation
 c_3 <- cohen.d(splitdata$overfirst$cause, splitdata$causefirst$cause)
 ```
+
 #### Table 1
+
 ```{r, message=FALSE, warning=FALSE, results='asis'}
 stargazer(lm_1, lm_2, lm_3,
           type = "html",
