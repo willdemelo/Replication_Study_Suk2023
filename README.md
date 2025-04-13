@@ -20,7 +20,7 @@ We utilized a custom website to host the survey that was used to collect our dat
 
 ### Writeup
 
-This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup.qmd). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/1290322).
+This is my full writeup of our entire replication effort. You can find it [here](https://github.com/willdemelo/Replication_Study_Suk2023/blob/main/writeup.qmd). It is a comprehensive look at our methods, results, and intepretation thereof. You can also find a fully rendered version of the writeup published [online](https://rpubs.com/willdemelo/smrepstudy).
 
 ## Contribution Overview
 
